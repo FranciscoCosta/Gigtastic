@@ -1,10 +1,10 @@
 import React from 'react'
-import './Messagess.scss'
+import './Messages.scss'
 
-function Messagess() {
+function Messages() {
   return (
-    <div>Messagess</div>
+    <div>Messages</div>
   )
 }
 
-export default Messagess
+export default Messages

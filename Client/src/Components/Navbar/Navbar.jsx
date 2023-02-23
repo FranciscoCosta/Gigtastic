@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.scss";
-// import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Navbar() {
   const [navbarActive, setnavbarActive] = useState(false);
   const [userMenuOpen, setuserMenuOpen] = useState(false);
+  const {pathname} = useLocation();
+
+  console.log(pathname,"AQUI")
 
   const isScrolled = () => {
     window.scrollY > 0 ? setnavbarActive(true) : setnavbarActive(false);
@@ -28,15 +31,15 @@ function Navbar() {
     <div className="Navbar">
       <div className="Navbar__container">
         <div className="Navbar__logo">
-          {/* <Link to="/"> */}
+          <Link to="/" className="link"> 
           <h1>Gigtastic</h1>
-          {/* </Link> */}
+          </Link>
         </div>
         <div className="Navbar__links">
-          <a href="/">Gigtastic</a>
-          <a href="/">Explore</a>
-          <a href="/">Sign in</a>
-          {!currentUser.isSeller && <a href="/">Become a seller</a>}
+          <Link to="/"><span>Gigtastic</span></Link>
+          <Link to="/"><span>Explore</span></Link>
+          <Link to="/register"><span>Sign in</span></Link>
+          {!currentUser.isSeller && <Link to="/"><span>Become a seller</span></Link>}
           {!currentUser && <button>Join</button>}
           {currentUser && (
             <div 
@@ -45,17 +48,17 @@ function Navbar() {
             >
               <img src={currentUser.img} alt="" />
               <span>{currentUser.username}</span>
-              {userMenuOpen &&
+              {userMenuOpen &&  
                 <div className="userMenu">
                 {currentUser.isSeller && (
                   <>
-                    <a href="/">Gigs</a>
-                    <a href="/">Add New Gig</a>
+                    <Link to="/gigs"><span>Gigs</span></Link>
+                    <Link to="/add"><span>Add New Gig</span></Link>
                   </>
                 )}
-                <a href="/">Orders</a>
-                <a href="/">Messages</a>
-                <a href="/">Logout</a>
+                <Link to="/orders"><span>Orders</span></Link>
+                <Link to="/messages"><span>Messages</span></Link>
+                <Link to="/logout"><span>Logout</span></Link>
               </div>}
             </div>
           )}
