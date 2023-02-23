@@ -1,0 +1,125 @@
+.Navbar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    background-color: var(--secondary-color);
+    backdrop-filter: blur(4px);
+
+
+
+    .Navbar__container{
+        width: 1400px;
+        color: var(--primary-color);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 0px;
+
+        .Navbar__logo{
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 0 20px;
+        }
+
+        .Navbar__links{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-right: 2rem;
+            a{
+                text-decoration: none;
+                color: var(--primary-color);
+                font-size: 1.2rem;
+                font-weight: 500;
+                padding: 0 10px;
+                transition: all 0.3s ease-in-out;
+                &:hover{
+                    color: black;
+                    background-color: var(--primary-color);
+                    border-radius: 5px;
+                }
+        }
+        .user{
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-right: 2rem;
+            cursor: pointer;
+
+            img{
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+            .userMenu{
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                top: 50px;
+                right: 0;
+                padding: 20px;
+                gap: 1rem;
+                border-radius: 10px;
+                border: 1px solid white;
+                background-color: var(--tetary-color);
+                width: 200px;
+                
+                a{
+                    font-weight: 300;
+                    font-size: 1rem;
+                }
+            }
+        }
+        button{
+            text-align: center;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 2px 5px;
+            border: 1px solid var(--tetary-color);
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+            &:hover{
+                border: var(--primary-color);
+                background-color: var(--background-color-nav);
+                color: var(--primary-color);
+            }
+        }
+        }
+    }
+
+    .bar{   
+        width: 1400px;
+        height: 2px;
+        background-color: rgba(126, 126, 126, 0.9);
+        outline: none;
+    }
+
+    .Navbar__submenu{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        color: var(--tetary-color);
+        font-size: 1.2rem;
+        font-weight: 400;
+        transition: 0.5s all ease;
+    }
+
+}
