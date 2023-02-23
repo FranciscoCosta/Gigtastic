@@ -1,0 +1,94 @@
+.Featured{
+    height: 50rem;
+    width: 100%;
+    background-color: var(--secondary-color);
+    padding-top: 10rem;
+
+    .Featured__container{
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+
+        .Featured-left{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1rem;
+            flex: 4;
+            margin-left: 8rem;
+            padding-bottom: 4rem;
+
+            span{
+                font-weight: 400;
+            }
+
+
+            h1{
+                font-size: 3.5rem;
+                font-weight: 700;
+            }
+
+            .Featured__search{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                background-color: white;
+                border-radius: 5px;
+
+                .Featured__search-input{
+                    display: flex;
+                    align-items: center;
+                    gap: 0.9rem;
+
+                    img{
+                        width: 1.1rem;
+                        height: 1.1rem;
+                        margin: 10px;
+                    }
+
+                    input{
+                        border: none;
+                        outline: none;
+                    }
+                }
+            button{
+                width: 120px;
+                height: 50px;
+                border: none;
+                background-color: #13890f;
+                cursor: pointer;
+                color: white;
+            }
+            }
+
+            .Featured__popular{
+                display: flex;
+                gap: 0.5rem;
+                align-items: center;
+
+                button{
+                    color: white;
+                    background-color: transparent;
+                    border: 1px solid white; 
+                    padding: 5px 10px;
+                    border-radius: 20px;
+                    font-size: 0.9rem;
+                    
+                    cursor: pointer;
+                }
+            }
+        }
+        .Featured-right{
+            flex: 1;
+            display: flex;
+            margin: 0 auto;
+            
+            img{
+                align-self: end;
+                height: 100%;
+            }
+
+
+        }
+    }
+}

@@ -28,11 +28,11 @@ function Navbar() {
   };
 
   return (
-    <div className="Navbar">
+    <div className={!navbarActive ? "Navbar" : "Navbar active"}>
       <div className="Navbar__container">
         <div className="Navbar__logo">
           <Link to="/" className="link"> 
-          <h1>Gigtastic</h1>
+          <h1 className={navbarActive && "Navbar-tilte active"}>Gigtastic</h1>
           </Link>
         </div>
         <div className="Navbar__links">
@@ -68,8 +68,10 @@ function Navbar() {
         <>
           <div className="bar" />
           <div className="Navbar__submenu">
-            <span>Test</span>
-            <span>test2</span>
+            <span>Web Design</span>
+            <span>Logo Design</span>
+            <span>Build Api</span>
+            <span>AI Services</span>
           </div>
         </>
       )}
