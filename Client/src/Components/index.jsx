@@ -3,6 +3,7 @@ import Footer from "./Footer/Footer";
 import Featured from "./Featured/Featured";
 import Slide from "./Slide/Slide";
 import CatCard from './CatCard/CatCard'
+import Features from "./Features/Features";
 
 export {
     Navbar,
@@ -10,4 +11,5 @@ export {
     Featured,
     Slide,
     CatCard,
+    Features,
 }
