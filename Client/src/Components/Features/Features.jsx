@@ -1,6 +1,7 @@
 import React from "react";
 import check from "../../assets/check.png";
 import "./Features.scss";
+import feat from "../../assets/Feat.jpg"
 
 function Features() {
   return (
@@ -53,7 +54,10 @@ function Features() {
             </div>
           </div>
         </div>
-        <div className="Features__right">a</div>
+        <div className="Features__right">
+
+          <img src={feat} alt="" />
+        </div>
       </div>
     </div>
   );

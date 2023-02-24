@@ -67,10 +67,14 @@ function Navbar() {
         <>
           <div className="bar" />
           <div className="Navbar__submenu">
-            <span>Web Design</span>
-            <span>Logo Design</span>
-            <span>Build Api</span>
-            <span>AI Services</span>
+          <span>Web and Mobile Design</span>
+              <span>Logo Design</span>
+              <span>Build Api</span>
+              <span>Build Website</span>
+              <span>Social Media Design</span>
+              <span>Illustration</span>
+              <span>AI Art</span>
+              <span>Digital Marketing</span>
           </div>
         </>
       )}

@@ -1,0 +1,87 @@
+.Footer{
+    width: 100%;
+    background-color: var(--secondary-color);
+    padding-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 2rem    ;
+
+    .Footer__container{
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+
+        .Footer__container__top{
+            height: 100%;
+
+            .Footer-categories{
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+
+                span{
+                    font-weight: 400;
+                    font-size: 1.2rem;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .Footer__container__bottom{
+
+            .Footer-container-social{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-around;
+                .copyright{
+
+
+                    p{
+                        text-align: center;
+                        font-weight: 500;
+                        font-size: 1.1rem;
+                    }
+                }
+
+                .social{
+                    display: flex;
+                    flex-direction: row;
+                    gap: 2rem;
+
+                    div {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        background-color: white;
+                        margin: 0.25rem 0;
+                        border: 1px solid var(--primary-color);
+                    
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    
+                        transition: all 0.3s ease-in-out;
+                    
+                        svg {
+                          width: 25px;
+                          height: 25px;
+                          color: rgb(89, 88, 88);
+                        }
+                    
+                        &:hover {
+                          background-color: rgb(89, 88, 88);;
+                          border-color: var(--primary-color);
+                    
+                          svg {
+                            color: white;
+                          }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

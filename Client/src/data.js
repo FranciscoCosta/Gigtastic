@@ -62,14 +62,14 @@ export const cards = [
         id: 3,
         img: "https://images.pexels.com/photos/4144923/pexels-photo-4144923.jpeg?auto=compress&cs=tinysrgb&w=1600",
         pp: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=1600",
-        cat: "Animated GIFs",
+        cat: "Build Api",
         username: "Emmett Potter",
       },
       {
         id: 4,
         img: "https://images.pexels.com/photos/4348404/pexels-photo-4348404.jpeg?auto=compress&cs=tinysrgb&w=1600",
         pp: "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=1600",
-        cat: "Packaging Design",
+        cat: "Build Website",
         username: "Freddie Johnston",
       },
       {
@@ -90,7 +90,7 @@ export const cards = [
         id: 7,
         img: "https://images.pexels.com/photos/6077368/pexels-photo-6077368.jpeg?auto=compress&cs=tinysrgb&w=1600",
         pp: "https://images.pexels.com/photos/1858175/pexels-photo-1858175.jpeg?auto=compress&cs=tinysrgb&w=1600",
-        cat: "Book Design",
+        cat: "AI Art",
         username: "Hannah Dougherty",
       },
       {
@@ -101,5 +101,4 @@ export const cards = [
         username: "Ward Brewer",
       },
     ];
-    
-  ];
+  

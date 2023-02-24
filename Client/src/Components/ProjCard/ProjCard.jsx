@@ -2,13 +2,16 @@ import React from 'react'
 import './ProjCard.scss'
 import Slider from "infinite-react-carousel";
 import { projects } from "../../data";
+import { Link } from 'react-router-dom'
 
+
+  console.log(projects)
 export default function ProjCard() {
   return (
     <div className='ProjCard'>
         <div className="ProjCard__container">
         <Slider
-          slidesToShow={5}
+          slidesToShow={4}
           arrowsScroll={4}
           centerMode={true}
           centerPadding={0}
@@ -16,7 +19,8 @@ export default function ProjCard() {
           autoplayScroll={3}
         >
           {projects.map((item) => (
-            <div className="ProjectCard" key={item.id}>
+            <Link to="/gigs"  className="ProjectLink" key={item.id}>
+            <div className="ProjectCard-item">
                 <img src={item.img} alt="project img" />
                 <div className="ProjectCard-info">
                     <img src={item.pp} alt="people img" />
@@ -27,6 +31,7 @@ export default function ProjCard() {
                 </div>
 
             </div>
+            </Link>
           ))}
         </Slider>
 

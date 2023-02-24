@@ -1,5 +1,5 @@
 import React from 'react'
-import { Featured, Features, Slide } from '../../Components/index'
+import { Featured, Features, ProjCard, Slide } from '../../Components/index'
 import './Home.scss'
 
 function Home() {
@@ -8,6 +8,7 @@ function Home() {
       <Featured/>
       <Slide/>
       <Features/>
+      <ProjCard/>
     </div>
   )
 }
