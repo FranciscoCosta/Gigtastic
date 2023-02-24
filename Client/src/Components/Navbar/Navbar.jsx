@@ -5,9 +5,8 @@ import { Link, useLocation } from "react-router-dom";
 function Navbar() {
   const [navbarActive, setnavbarActive] = useState(false);
   const [userMenuOpen, setuserMenuOpen] = useState(false);
-  const {pathname} = useLocation();
+  // const {pathname} = useLocation();
 
-  console.log(pathname,"AQUI")
 
   const isScrolled = () => {
     window.scrollY > 0 ? setnavbarActive(true) : setnavbarActive(false);
