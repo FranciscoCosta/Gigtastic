@@ -1,0 +1,29 @@
+.Gigs{
+    display: flex;
+    justify-content: center;
+
+    .Gigs__container{
+        width: 1400px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        .Gigs__title-info{
+            font-weight: 300;
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        p{
+            color: #999;
+            font-weight: 300;
+        }
+
+        Gigs__menu{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+}

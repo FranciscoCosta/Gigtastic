@@ -1,0 +1,82 @@
+.GigCards{
+    width: 324px;
+    height: 370px;
+    border: 1px solid lightgrey;
+    margin-bottom: 25px;
+
+    img{
+        width: 100%;
+        height: 50%;
+        object-fit: cover;
+    }
+
+    .GigCards__info{
+        padding: 10px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        .GigCards__user{
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+
+            img{
+                width: 26px;
+                height: 26px;
+                border-radius: 50%;
+            }
+        }
+        p{
+            color: #111;
+        }
+
+        .GigCards__star{
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            img{
+                width: 14px;
+                height: 14px;
+            }
+            span{
+                font-size: 14px;
+                font-weight: 600;
+                color: #fcc108;
+            }
+        }
+    }
+    hr{
+        height: 0;
+        border: 0.5px solid lightgray;
+    }
+
+    .GigCards__details{
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+
+        img{
+            width: 1rem;
+            height: 1rem;
+            cursor:  pointer;
+        }
+
+        .GigCards__details-price{
+            span{
+                color: #999;
+                font-size: 0.8rem;
+            }
+
+            h2{
+                color: #555;
+                font-size: 1.2rem;
+                font-weight: 400;
+            
+            }
+        }
+    }
+}

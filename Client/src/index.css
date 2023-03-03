@@ -5,6 +5,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: Poppins, sans-serif;
+  scroll-behavior: smooth;
 }
 
 :root {
@@ -13,4 +14,17 @@
   --tetary-color: #101100;
   --background-color-nav: #101010;
   --background-color-main: #ececec;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: black;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--secondary-color);
+  border-radius: 100px;
 }
