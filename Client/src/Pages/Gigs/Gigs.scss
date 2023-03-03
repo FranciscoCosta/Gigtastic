@@ -20,10 +20,84 @@
             font-weight: 300;
         }
 
-        Gigs__menu{
+        .Gigs__menu{
             display: flex;
             align-items: center;
             justify-content: space-between;
+        
+        .Gigs__menu-left{
+
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #555;
+
+            input{
+
+                padding: 5px;
+                border: 1px solid rgb(239,238,238);
+                outline: none;
+
+                &::placeholder{
+                    color: gray;
+                }
+            }
+            button{
+                background-color: var(--secondary-color);
+                color: white;
+                font-weight: 500;
+                border: none;
+                cursor: pointer;
+                padding: 5px 10px;
+                border-radius: 5px; 
+            }
+        }
+
+        .Gigs__menu-right{
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            position: relative;
+
+            .Menu__sortBy{
+                color: #555;
+                font-weight: 300;
+            }
+
+            .Menu__sortType{
+                font-weight: 500;
+
+                img{
+                    width: 1rem;
+                    cursor: pointer;
+                }
+            }
+
+            .Sort__menu{
+                padding: 20px;
+                background-color: white;
+                border-radius: 5px;
+                border: 0.5px solid rgb(239,238,238);
+                position: absolute;
+                top: 30px;
+                right: 0px;
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+                color: #555;
+            }
+
+            span{
+                cursor: pointer;
+            }
+
+        }
+        }
+        .Gigs__cards{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 0.5rem;
         }
     }
 }

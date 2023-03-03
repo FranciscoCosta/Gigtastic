@@ -1,13 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./gigCards.scss";
-import start from "../../assets/start.png";
+import "./GigCards.scss";
+import start from "../../assets/star.png";
 import heart from "../../assets/heart.png";
-// import { gigs } from '../../data'
 
-function gigCards({ item }) {
+function GigCards({ item }) {
   return (
-    <Link to="/gig/123">
+    <Link to="/gig/123" className="link">
       <div className="GigCards">
         <img src={item.img} alt="" />
         <div className="GigCards__info">
@@ -34,4 +33,4 @@ function gigCards({ item }) {
   );
 }
 
-export default gigCards;
+export default GigCards;

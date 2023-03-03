@@ -3,7 +3,12 @@ import './Gig.scss'
 
 function Gig() {
   return (
-    <div>Gig</div>
+    <div className='Gig'>
+      <div className="Gig__container">
+        <div className="Gig__left"></div>
+        <div className="Gig__right"></div>
+      </div>
+    </div>
   )
 }
 
