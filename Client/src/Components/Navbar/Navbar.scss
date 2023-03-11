@@ -58,8 +58,8 @@
                 padding: 0 10px;
                 transition: all 0.3s ease-in-out;
                 &:hover{
-                    color: black;
                     background-color: var(--primary-color);
+                    color: black;
                     border-radius: 5px;
                 }
         }
@@ -90,12 +90,18 @@
                 gap: 1rem;
                 border-radius: 10px;
                 border: 1px solid black;
-                background-color: rgba(255, 255, 255, 0.5);
+                background-color: rgba(0, 0, 0, 0.5);
                 width: 200px;
                 
                 span{
                     font-weight: 300;
                     font-size: 1rem;
+                    color: white;
+                    
+                    &:hover{
+                        color: black;
+                        border-radius: 5px;
+                    }
                 }
             }
         }
