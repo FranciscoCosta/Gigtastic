@@ -13,9 +13,11 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
-    const result = await loginService(req);
+    const result = await loginService(req, res);
     if (result) {
       const token = await createToken(result);
+      console.log(token);
+      console.log("aqui");
       const { _doc } = result;
       return res
         .cookie("token", token, {
