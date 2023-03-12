@@ -1,5 +1,6 @@
 import User from "../models/userModel.js";
 import bcrypt from "bcrypt";
+import { createToken } from "../utils/JwtToken.js";
 
 export const registerService = async (req, _res) => {
   try {
@@ -25,6 +26,7 @@ export const loginService = async (req, res) => {
     if (!isCorrect)
       return res.status(404).json({ message: "Wrong password or username!" });
     const { password, ...others } = user;
+
     return others;
   } catch (error) {
     return error;
