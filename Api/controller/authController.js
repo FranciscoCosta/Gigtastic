@@ -17,7 +17,6 @@ export const login = async (req, res) => {
     if (result) {
       const token = await createToken(result);
       console.log(token);
-      console.log("aqui");
       const { _doc } = result;
       return res
         .cookie("token", token, {
