@@ -1,4 +1,4 @@
-import { registerService } from "../service/authService.js";
+import { registerService, loginService } from "../service/authService.js";
 
 export const register = async (req, res) => {
   try {
@@ -10,6 +10,17 @@ export const register = async (req, res) => {
   }
 };
 
-export const login = async (req, res) => {};
+export const login = async (req, res) => {
+  try {
+    const result = await loginService(req);
+    if (result) {
+      const { _doc } = result;
+      return res.status(200).json({ ..._doc });
+    }
+    return res.status(400).json({ message: "User not logged in!" });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
 
 export const logout = async (req, res) => {};
