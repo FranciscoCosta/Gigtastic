@@ -12,7 +12,7 @@ export const registerService = async (req, _res) => {
     await newUser.save();
     return newUser;
   } catch (err) {
-    console.log(err, "Serviçe Error");
+    return res.status(500).json({ message: "Something went wrong" });
   }
 };
 
@@ -27,5 +27,17 @@ export const loginService = async (req, res) => {
     return others;
   } catch (error) {
     return error;
+  }
+};
+
+export const logoutService = async (req, res) => {
+  try {
+    res.clearCookie("token", {
+      sameSite: "none",
+      secure: true,
+    });
+    return true;
+  } catch (error) {
+    return res.status(500).json({ message: "Something went wrong" });
   }
 };
