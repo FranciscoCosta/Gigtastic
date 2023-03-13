@@ -6,7 +6,7 @@ import axios from "axios";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  // const [error, setError] = useState(null);
+  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
 
@@ -17,11 +17,11 @@ function Login() {
         username,
         password,
       });
-      console.log(res, "res");
       localStorage.setItem("currentUser", JSON.stringify(res.data));
       navigate("/");
     } catch (err) {
       console.log(err);
+      setError(err.response.data.message);
     }
   };
 
@@ -45,7 +45,7 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit">Login</button>
-        {/* {error && error} */}
+        {error && <p className="error">{error}</p>}
       </form>
     </div>
   );
