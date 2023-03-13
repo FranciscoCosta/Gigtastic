@@ -31,9 +31,7 @@ function Register() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const url = await upload(file);
-    console.log(url);
     try {
       await axios.post("http://localhost:8080/api/v1/register", {
         ...user,
