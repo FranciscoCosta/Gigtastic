@@ -1,7 +1,6 @@
-import { addGigService } from "../service/gigService.js";
+import { addGigService, deleteGigService } from "../service/gigService.js";
 
 export const addGig = async (req, res) => {
-  console.log(req.userId, req.isSeller);
   try {
     const result = await addGigService(req, res);
     if (result) return res.status(201).json({ message: "Gig added!" });
@@ -11,7 +10,16 @@ export const addGig = async (req, res) => {
   }
 };
 
-export const deleteGig = async (req, res) => {};
+export const deleteGig = async (req, res) => {
+  try {
+    const result = await deleteGigService(req, res);
+    return res
+      .status(201)
+      .json({ message: `The gig ${result.title} was deleted` });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
 
 export const getGig = async (req, res) => {};
 
