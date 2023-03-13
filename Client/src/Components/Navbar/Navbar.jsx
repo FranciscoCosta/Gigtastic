@@ -90,7 +90,7 @@ function Navbar() {
               )}
             </div>
           ) : (
-            <button onClick={() => navigate("/login")}>Join</button>
+            <button onClick={() => navigate("/login")}>Login</button>
           )}
         </div>
       </div>
