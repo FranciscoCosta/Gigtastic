@@ -28,14 +28,30 @@ export const deleteGigService = async (req, res) => {
 };
 
 export const getGigService = async (req, res) => {
-  const gig = await Gig.findById(req.params.id);
-  if (!gig) return res.status(404).json({ message: "Gig not found" });
   try {
-    const result = await Gig.findByIdAndDelete(req.params.id);
-    return result;
+    const gig = await Gig.findById(req.params.id);
+    if (!gig) return res.status(404).json({ message: "Gig not found" });
+    return gig;
   } catch (error) {
-    return res.status(404).json({ message: "Error" });
+    return res.status(404).json({ message: "Gig not found" });
   }
 };
 
-export const getGigsService = async (req, res) => {};
+export const getGigsService = async (req, res) => {
+  const queries = req.query;
+  const filters = {
+    ...(queries.userId && { userId: queries.userId }),
+    ...(queries.category && { category: queries.category }),
+    ...(queries.max && { price: { $lte: queries.max } }),
+    ...(queries.min && { price: { $gte: queries.min } }),
+    ...(queries.search && { title: { $regex: queries.search, $options: "i" } }),
+  };
+  try {
+    const gigs = await Gig.find(filters);
+    console.log(gigs);
+    if (!gigs) return res.status(404).json({ message: "Gigs not found" });
+    return gigs;
+  } catch (error) {
+    return res.status(404).json({ message: "Gigs not found" });
+  }
+};

@@ -1,4 +1,9 @@
-import { addGigService, deleteGigService } from "../service/gigService.js";
+import {
+  addGigService,
+  deleteGigService,
+  getGigService,
+  getGigsService,
+} from "../service/gigService.js";
 
 export const addGig = async (req, res) => {
   try {
@@ -21,6 +26,22 @@ export const deleteGig = async (req, res) => {
   }
 };
 
-export const getGig = async (req, res) => {};
+export const getGig = async (req, res) => {
+  try {
+    const result = await getGigService(req, res);
 
-export const getGigs = async (req, res) => {};
+    return res.status(201).json(result);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+export const getGigs = async (req, res) => {
+  try {
+    const result = await getGigsService(req, res);
+    console.log(result);
+    return res.status(201).json({ result });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
