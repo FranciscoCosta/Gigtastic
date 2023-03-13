@@ -17,21 +17,19 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
-    const result = await loginService(req, res);
-    if (result) {
-      const token = await createToken(result);
-      console.log(token);
-      const { _doc } = result;
-      return res
-        .cookie("token", token, {
+    const user = await loginService(req, res);
+    if (user) {
+      const token = await createToken(user);
+      const { password, ...info } = user._doc;
+      res
+        .cookie("accessToken", token, {
           httpOnly: true,
         })
         .status(200)
-        .json({ ..._doc });
+        .send(info);
     }
-    return res.status(404).json({ message: "User did not logged in!" });
-  } catch (error) {
-    res.status(500).send(error.message);
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
   }
 };
 

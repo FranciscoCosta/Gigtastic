@@ -58,6 +58,7 @@ const gigSchema = new Schema(
     revisionsNumber: {
       type: Number,
       required: true,
+      default: 0,
     },
     features: {
       type: Array,

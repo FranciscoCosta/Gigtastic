@@ -1,19 +1,15 @@
 import jwt from "jsonwebtoken";
 import User from "../models/userModel.js";
 
-export const verifyToken = async (req, res, next) => {
-  const id = req.params.id;
-  const token = req.cookies.token;
-  const user = await User.findById(id);
-  console.log("entrei no verify token");
-  if (!token) return res.status(404).json({ message: "Token not found!" });
-  try {
-    const decodedToken = jwt.verify(token, process.env.SECRET_JWT);
-    if (decodedToken.id !== id)
-      return res.status(404).json({ message: "Unauthorized" });
-    console.log("passei no verify token");
+export const verifyToken = (req, res, next) => {
+  const token = req.cookies.accessToken;
+  if (!token) return res.status(403).json({ message: "Token dosent exist!" });
+
+  jwt.verify(token, process.env.SECRET_JWT, async (err, payload) => {
+    if (err) res.status(403).json({ message: "Token dosent exist!" });
+    req.userId = payload.id;
+    req.isSeller = payload.isSeller;
+    console.log("passei vToken");
     next();
-  } catch (error) {
-    return res.status(500).json({ message: "Unauthorized" });
-  }
+  });
 };
