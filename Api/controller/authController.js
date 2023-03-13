@@ -29,7 +29,7 @@ export const login = async (req, res) => {
         .status(200)
         .json({ ..._doc });
     }
-    return res.status(400).json({ message: "User not logged in!" });
+    return res.status(404).json({ message: "User did not logged in!" });
   } catch (error) {
     res.status(500).send(error.message);
   }
