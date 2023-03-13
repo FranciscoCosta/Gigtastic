@@ -5,6 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function Register() {
+  const [error, setError] = useState(null);
   const [file, setFile] = useState(null);
   const [user, setUser] = useState({
     username: "",
@@ -40,6 +41,7 @@ function Register() {
       navigate("/login");
     } catch (err) {
       console.log(err);
+      setError(err.response.data.message);
     }
   };
   return (
@@ -47,6 +49,7 @@ function Register() {
       <form onSubmit={handleSubmit}>
         <div className="left">
           <h1>Create a new account</h1>
+
           <label htmlFor="">Username</label>
           <input
             name="username"
@@ -72,6 +75,7 @@ function Register() {
             placeholder="Brazil"
             onChange={handleChange}
           />
+          {error && <p className="error">{error}</p>}
           <button type="submit">Register</button>
         </div>
         <div className="right">
