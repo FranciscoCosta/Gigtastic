@@ -39,18 +39,23 @@ export const getGigService = async (req, res) => {
 
 export const getGigsService = async (req, res) => {
   const queries = req.query;
+  console.log(queries, "Queries do backend");
   const filters = {
     ...(queries.userId && { userId: queries.userId }),
-    ...(queries.category && {
-      category: { $regex: queries.category, $options: "i" },
-    }),
-    ...(queries.max && { price: { $lte: queries.max } }),
-    ...(queries.min && { price: { $gte: queries.min } }),
+    ...(queries.category && { category: { $regex: queries.category } }),
+    ...(queries.min && { price: { $gte: Number(queries.min) } }),
+    ...(queries.max && { price: { $lte: Number(queries.max) } }),
+    ...(queries.min &&
+      queries.max && {
+        price: { $gte: Number(queries.min), $lte: Number(queries.max) },
+      }),
     ...(queries.search && { title: { $regex: queries.search, $options: "i" } }),
   };
   try {
     const gigs = await Gig.find(filters);
-    console.log(gigs);
+    console.log(gigs, "Gigs do backend");
+
+    console.log(filters, "Filters do backend");
     if (!gigs) return res.status(404).json({ message: "Gigs not found" });
     return gigs;
   } catch (error) {

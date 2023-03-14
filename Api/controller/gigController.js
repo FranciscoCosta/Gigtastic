@@ -39,7 +39,6 @@ export const getGig = async (req, res) => {
 export const getGigs = async (req, res) => {
   try {
     const result = await getGigsService(req, res);
-    console.log(result);
     return res.status(201).json({ result });
   } catch (error) {
     return res.status(500).json({ message: error.message });
