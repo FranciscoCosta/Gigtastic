@@ -1,22 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Gigs.scss";
 import down from "../../assets/down.png";
-import { gigs } from "../../data";
 import GigCards from "../../Components/GigCards/GigCards";
 import axios from "axios";
 
 function Gigs() {
   const [sort, setSort] = useState("sales");
   const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [gigs, setGigs] = useState([]);
+  const minRef = useRef();
+  const maxRef = useRef();
 
   const fetchData = async () => {
+    setIsLoading(true);
     const result = await axios.get("http://localhost:8080/api/v1/gigs", {
       withCredentials: true,
     });
-    console.log(result);
+    setGigs(result.data.result);
+    setIsLoading(false);
   };
 
-  fetchData();
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const reSort = (type) => {
     setSort(type);
@@ -31,8 +38,8 @@ function Gigs() {
         <div className="Gigs__menu">
           <div className="Gigs__menu-left">
             <span>Budget</span>
-            <input type="text" name="" id="" placeholder="min" />
-            <input type="text" name="" id="" placeholder="max" />
+            <input type="text" name="" id="" placeholder="min" ref={minRef} />
+            <input type="text" name="" id="" placeholder="max" ref={maxRef} />
             <button>Apply</button>
           </div>
           <div className="Gigs__menu-right">
@@ -54,9 +61,9 @@ function Gigs() {
           </div>
         </div>
         <div className="Gigs__cards">
-          {gigs.map((gig) => (
-            <GigCards key={gig.id} item={gig} />
-          ))}
+          {isLoading
+            ? "Loading..."
+            : gigs.map((gig) => <GigCards key={gig.id} item={gig} />)}
         </div>
       </div>
     </div>
