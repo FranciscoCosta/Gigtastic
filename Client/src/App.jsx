@@ -1,4 +1,5 @@
 import React from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Gig,
   Gigs,
@@ -16,13 +17,16 @@ import "./App.scss";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
 function App() {
+  const queryClient = new QueryClient();
   const Layout = () => {
     return (
-      <>
-        <Navbar />
-        <Outlet />
-        <Footer />
-      </>
+      <QueryClientProvider client={queryClient}>
+        <>
+          <Navbar />
+          <Outlet />
+          <Footer />
+        </>
+      </QueryClientProvider>
     );
   };
 
