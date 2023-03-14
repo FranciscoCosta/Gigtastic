@@ -41,7 +41,9 @@ export const getGigsService = async (req, res) => {
   const queries = req.query;
   const filters = {
     ...(queries.userId && { userId: queries.userId }),
-    ...(queries.category && { category: queries.category }),
+    ...(queries.category && {
+      category: { $regex: queries.category, $options: "i" },
+    }),
     ...(queries.max && { price: { $lte: queries.max } }),
     ...(queries.min && { price: { $gte: queries.min } }),
     ...(queries.search && { title: { $regex: queries.search, $options: "i" } }),
