@@ -5,6 +5,6 @@ import { verifyToken } from "../midllewares/verifyToken.js";
 const userRouter = express.Router();
 
 userRouter.delete("/api/v1/user/:id", verifyToken, deleteUser);
-userRouter.get("/api/v1/user/:id", verifyToken, addUser);
+userRouter.get("/api/v1/user/:id", addUser);
 
 export default userRouter;
