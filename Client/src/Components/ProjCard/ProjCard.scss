@@ -10,6 +10,9 @@
         width: 1500px;
 
         .ProjectLink{
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-decoration: none;
             .ProjectCard-item{
                 width: 300px;
@@ -20,7 +23,7 @@
                 img{
                     width: 100%;
                     height: 70%;
-                    object-fit: contain;
+                    object-fit: cover;
                     filter: brightness(70%);
 
                     &:hover{
@@ -61,31 +64,6 @@
     
                 }
             }
-        }
-
-            .carousel-next, .carousel-prev{
-            background-color: var(--background-color-main);
-            border: none;
-            outline: none;
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            right: 5.5%;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.3s ease-in-out;
-            &:hover{
-                background-color: var(--background-color-secondary);
-            }
-    
-        }
-        .carousel-prev{
-            left: 0.5%;
         }
 
     }

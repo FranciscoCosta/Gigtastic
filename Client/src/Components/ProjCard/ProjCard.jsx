@@ -3,6 +3,28 @@ import "./ProjCard.scss";
 import Slider from "infinite-react-carousel";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+
+const responsive = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
 
 export default function ProjCard() {
   const [isLoading, setIsLoading] = useState(true);
@@ -38,14 +60,7 @@ export default function ProjCard() {
         "Loading"
       ) : (
         <div className="ProjCard__container">
-          {/* <Slider
-            slidesToShow={4}
-            arrowsScroll={4}
-            centerMode={true}
-            centerPadding={0}
-            autoplay={true}
-            autoplayScroll={3}
-          >
+          <Carousel responsive={responsive} className="ProjCard__carousel">
             {projects.map((item) => (
               <Link
                 to={`/gig/${item._id}`}
@@ -64,7 +79,7 @@ export default function ProjCard() {
                 </div>
               </Link>
             ))}
-          </Slider> */}
+          </Carousel>
         </div>
       )}
     </div>
