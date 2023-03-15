@@ -30,7 +30,7 @@ function Gigs() {
 
   useEffect(() => {
     fetchData();
-  }, [sort]);
+  }, [sort, category]);
 
   const reSort = (type) => {
     setSort(type);
@@ -44,7 +44,7 @@ function Gigs() {
   return (
     <div className="Gigs">
       <div className="Gigs__container">
-        <span className="Gigs__title-info">Gigtastic: Graphic & Design</span>
+        <span className="Gigs__title-info">Gigtastic: {category || ""}</span>
 
         <h1>{category || "All Categories"}</h1>
         {userFilter.length > 0 && (
