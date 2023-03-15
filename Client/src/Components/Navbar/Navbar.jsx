@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Navbar.scss";
 import { Link, useNavigate } from "react-router-dom";
 import profileIcon from "../../assets/profile.png";
 import axios from "axios";
+import { Context } from "../../Context/context";
 
 function Navbar() {
   const [navbarActive, setnavbarActive] = useState(false);
   const [userMenuOpen, setuserMenuOpen] = useState(false);
+  const { setCategory, setSearch, setuserFilter } = useContext(Context);
   // const {pathname} = useLocation();
 
   const navigate = useNavigate();
@@ -32,6 +34,13 @@ function Navbar() {
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const handleCategory = (value) => {
+    setuserFilter([]);
+    setSearch("");
+    setCategory(value);
+    navigate(`/gigs`);
   };
 
   return (
@@ -98,14 +107,21 @@ function Navbar() {
         <>
           <div className="bar" />
           <div className="Navbar__submenu">
-            <span>Web and Mobile Design</span>
-            <span>Logo Design</span>
-            <span>Build Api</span>
-            <span>Build Website</span>
-            <span>Social Media Design</span>
-            <span>Illustration</span>
-            <span>AI Art</span>
-            <span>Digital Marketing</span>
+            <span onClick={() => handleCategory("Web")}>
+              Web and Mobile Design
+            </span>
+            <span onClick={() => handleCategory("Logo")}>Logo Design</span>
+            <span onClick={() => handleCategory("Api")}>Build Api</span>
+            <span onClick={() => handleCategory("Social")}>
+              Social Media Design
+            </span>
+            <span onClick={() => handleCategory("Illustration")}>
+              Illustration
+            </span>
+            <span onClick={() => handleCategory("AI")}>AI Art</span>
+            <span onClick={() => handleCategory("Marketing")}>
+              Digital Marketing
+            </span>
           </div>
         </>
       )}
