@@ -5,15 +5,18 @@ export const Context = createContext();
 function Provider({ children }) {
   const [category, setCategory] = useState("");
   const [search, setSearch] = useState("");
+  const [userFilter, setuserFilter] = useState([]);
 
   const context = useMemo(
     () => ({
       category,
-      setCategory,
       search,
+      userFilter,
+      setCategory,
       setSearch,
+      setuserFilter,
     }),
-    [category, search]
+    [category, search, userFilter]
   );
 
   Provider.propTypes = {

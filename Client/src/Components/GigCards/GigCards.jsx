@@ -1,26 +1,65 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./GigCards.scss";
 import start from "../../assets/star.png";
 import heart from "../../assets/heart.png";
+import axios from "axios";
+import { Context } from "../../Context/context";
 
 function GigCards({ item }) {
+  const navigate = useNavigate();
+  const { setCategory, setSearch, setuserFilter } = useContext(Context);
+  const [user, setuser] = useState({});
+  const [isLoading, setisLoading] = useState(false);
+
+  useEffect(() => {
+    fetchData(item);
+  }, []);
+  const fetchData = async (item) => {
+    setisLoading(true);
+    const resultUser = await axios.get(
+      `http://localhost:8080/api/v1/user/${item.userId}`,
+      {
+        withCredentials: true,
+      }
+    );
+    setuser(resultUser.data.result);
+    setisLoading(false);
+  };
+
+  const resetFilter = () => {
+    setCategory("");
+    setSearch("");
+  };
+
+  const handleUser = () => {
+    resetFilter();
+    setuserFilter([user._id, user.username]);
+    navigate("/gigs");
+  };
+
   return (
-    <Link to="/gig/123" className="link">
-      <div className="GigCards">
+    <div className="GigCards">
+      <Link to={`/gig/${item._id}`} className="link">
         <img src={item.cover} alt="" />
-        <div className="GigCards__info">
+      </Link>
+      <div className="GigCards__info">
+        {isLoading ? (
+          "Loading..."
+        ) : (
           <div className="GigCards__user">
-            <img src={item.pp} alt="" />
-            <span>{item.username}</span>
+            <img src={user.img} alt="" onClick={handleUser} />
+            <span onClick={handleUser}>{user.username}</span>
           </div>
-          <p>{item.shortDesc}</p>
-          <div className="GigCards__star">
-            <img src={start} alt="star icon" />
-            <span>{item.star}</span>
-          </div>
+        )}
+        <p>{item.shortDesc}</p>
+        <div className="GigCards__star">
+          <img src={start} alt="star icon" />
+          <span>{item.star}</span>
         </div>
-        <hr />
+      </div>
+      <hr />
+      <Link to={`/gig/${item._id}`} className="link">
         <div className="GigCards__details">
           <img src={heart} alt="heart-icon" />
           <div className="GigCards__details-price">
@@ -28,8 +67,8 @@ function GigCards({ item }) {
             <h2>${item.price}</h2>
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 }
 

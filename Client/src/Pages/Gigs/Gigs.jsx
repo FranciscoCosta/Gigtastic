@@ -7,7 +7,7 @@ import axios from "axios";
 import { Loader } from "../../Components";
 
 function Gigs() {
-  const { category, search } = useContext(Context);
+  const { category, search, userFilter, setuserFilter } = useContext(Context);
   const [sort, setSort] = useState("sales");
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -18,9 +18,8 @@ function Gigs() {
   const fetchData = async () => {
     setIsLoading(true);
 
-    console.log(search);
     const result = await axios.get(
-      `http://localhost:8080/api/v1/gigs?&min=${minRef.current.value}&max=${maxRef.current.value}&category=${category}&search=${search}&sort=${sort}`,
+      `http://localhost:8080/api/v1/gigs?&min=${minRef.current.value}&max=${maxRef.current.value}&category=${category}&search=${search}&sort=${sort}&user=${userFilter[0]}`,
       {
         withCredentials: true,
       }
@@ -46,7 +45,13 @@ function Gigs() {
     <div className="Gigs">
       <div className="Gigs__container">
         <span className="Gigs__title-info">Gigtastic: Graphic & Design</span>
+
         <h1>{category || "All Categories"}</h1>
+        {userFilter.length > 0 && (
+          <h2>
+            Seller: <span>{userFilter[1]}</span>
+          </h2>
+        )}
         <p>Results:</p>
         <div className="Gigs__menu">
           <div className="Gigs__menu-left">

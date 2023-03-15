@@ -10,10 +10,17 @@
         flex-direction: column;
         gap: 1rem;
 
+        span{
+            color: #1db954;
+            cursor: pointer;
+        }
+
         .Gigs__title-info{
             font-weight: 300;
             font-size: 0.8rem;
             color: #555;
+
+
         }
 
         p{

@@ -9,11 +9,12 @@ function Featured() {
   const [input, setInput] = useState("");
   const navigate = useNavigate();
 
-  const { setCategory, setSearch } = useContext(Context);
+  const { setCategory, setSearch, setuserFilter } = useContext(Context);
 
   useEffect(() => {
     setCategory("");
     setSearch("");
+    setuserFilter([]);
   }, []);
 
   return (
