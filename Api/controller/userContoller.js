@@ -1,4 +1,4 @@
-import { deleteUserService } from "../service/userService.js";
+import { deleteUserService, addUserService } from "../service/userService.js";
 
 export const deleteUser = async (req, res) => {
   const user = await User.findById(req.params.id);
@@ -12,5 +12,15 @@ export const deleteUser = async (req, res) => {
     return res.status(500).json({ message: "Error" });
   } catch (error) {
     res.status(500).send(error.message);
+  }
+};
+
+export const addUser = async (req, res) => {
+  try {
+    const result = await addUserService(req, res);
+    if (result) return res.status(201).json({ result });
+    return res.status(500).json({ message: "Error" });
+  } catch (error) {
+    console.log(error);
   }
 };

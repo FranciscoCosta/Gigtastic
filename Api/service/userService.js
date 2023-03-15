@@ -9,3 +9,13 @@ export const deleteUserService = async (req, res) => {
     return error;
   }
 };
+
+export const addUserService = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const result = await User.findById(id);
+    return result;
+  } catch (error) {
+    return error;
+  }
+};

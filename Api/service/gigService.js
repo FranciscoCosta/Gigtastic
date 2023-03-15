@@ -52,8 +52,7 @@ export const getGigsService = async (req, res) => {
     ...(queries.search && { title: { $regex: queries.search, $options: "i" } }),
   };
   try {
-    const gigs = await Gig.find(filters);
-    console.log(gigs, "Gigs do backend");
+    const gigs = await Gig.find(filters).sort({ [queries.sort]: -1 });
 
     console.log(filters, "Filters do backend");
     if (!gigs) return res.status(404).json({ message: "Gigs not found" });
