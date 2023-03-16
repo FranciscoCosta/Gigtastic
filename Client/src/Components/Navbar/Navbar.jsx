@@ -55,12 +55,14 @@ function Navbar() {
           <Link to="/">
             <span>Gigtastic</span>
           </Link>
-          <Link to="/">
+          <Link to="/gigs">
             <span>Explore</span>
           </Link>
-          <Link to="/register">
-            <span>Sign in</span>
-          </Link>
+          {!currentUser && (
+            <Link to="/register">
+              <span>Sign in</span>
+            </Link>
+          )}
           {/* {!currentUser.isSeller ||
             (false && (
               <Link to="/">

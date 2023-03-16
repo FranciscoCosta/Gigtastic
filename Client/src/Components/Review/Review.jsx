@@ -38,13 +38,6 @@ function Review({ review }) {
         <span>{review.stars}</span>
       </div>
       <p>{review.desc}</p>
-      <div className="Gig__helpful">
-        <span>Helpful?</span>
-        <img src="/img/like.png" alt="" />
-        <span className="yes">Yes</span>
-        <img src="/img/dislike.png" alt="" />
-        <span className="no">No</span>
-      </div>
       <hr />
     </div>
   );
