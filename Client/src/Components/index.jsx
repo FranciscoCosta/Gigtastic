@@ -6,5 +6,6 @@ import CatCard from "./CatCard/CatCard";
 import Features from "./Features/Features";
 import ProjCard from "./ProjCard/ProjCard";
 import Loader from "./Loader/Loader";
+import Reviews from "./Reviews/Reviews";
 
-export { Navbar, Footer, Featured, Slide, CatCard, Features, ProjCard, Loader };
+export { Navbar, Footer, Featured, Slide, CatCard, Features, ProjCard, Loader,Reviews };
