@@ -9,6 +9,8 @@ import userRoute from "./routes/userRoute.js";
 import authRoute from "./routes/authRoute.js";
 import gigRoute from "./routes/gigRoute.js";
 import reviewRoute from "./routes/reviewRoute.js";
+import orderRoute from "./routes/orderRoute.js";
+import conversationRoute from "./routes/conversationRoute.js";
 
 const app = express();
 app.use(bodyParser.json());
@@ -23,6 +25,8 @@ app.use(userRoute);
 app.use(authRoute);
 app.use(gigRoute);
 app.use(reviewRoute);
+app.use(orderRoute);
+app.use(conversationRoute);
 
 // app.use((err, req, res, next) => {
 //   const errorStatus = err.status || 500;

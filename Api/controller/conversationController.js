@@ -1,0 +1,55 @@
+import {
+  getConversationsService,
+  getConversationService,
+  createConversationService,
+  updateConversationService,
+} from "../service/conversationService.js";
+
+export const getConversations = async (req, res) => {
+  try {
+    const getconversations = await getConversationsService(req, res);
+    if (conversations) return res.status(201).json({ getconversations });
+    return res.status(403).json({ message: "Wasnt able to get conversations" });
+  } catch (eror) {
+    return res.status(403).json({ message: "Wasnt able to get conversations" });
+  }
+};
+
+export const getConversation = async (req, res) => {
+  try {
+    const getconversation = await getConversationService(req, res);
+    if (conversation) return res.status(201).json({ getconversation });
+    return res.status(403).json({ message: "Wasnt able to get conversation" });
+  } catch (eror) {
+    return res.status(403).json({ message: "Wasnt able to get conversation" });
+  }
+};
+
+export const createConversation = async (req, res) => {
+  console.log("entrei na controller");
+  try {
+    const conversation = await createConversationService(req, res);
+    if (conversation) return res.status(201).json({ conversation });
+    return res
+      .status(403)
+      .json({ message: "Wasnt able to create conversation" });
+  } catch (eror) {
+    return res
+      .status(403)
+      .json({ message: "Wasnt able to create conversation" });
+  }
+};
+
+export const updateConversation = async (req, res) => {
+  try {
+    const updatedconversation = await updateConversationService(req, res);
+    if (conversation) return res.status(201).json({ updatedconversation });
+    return res
+      .status(403)
+      .json({ message: "Wasnt able to update conversation" });
+  } catch (eror) {
+    return res
+      .status(403)
+      .json({ message: "Wasnt able to update conversation" });
+  }
+};
