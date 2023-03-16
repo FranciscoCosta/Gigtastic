@@ -50,18 +50,18 @@ function GigCards({ item }) {
           <div className="GigCards__user">
             <img src={user.img} alt="" onClick={handleUser} />
             <span onClick={handleUser}>{user.username}</span>
+            <div className="GigCards__star">
+              <img src={start} alt="star icon" />
+              <span>
+                {!isNaN(item.totalStars / item.stars) &&
+                  Math.round(item.totalStars / item.stars)}
+              </span>
+            </div>
           </div>
         )}
         <p>{item.shortDesc}</p>
-        <div className="GigCards__star">
-          <img src={start} alt="star icon" />
-          <span>
-            {!isNaN(item.totalStars / item.stars) &&
-              Math.round(item.totalStars / item.stars)}
-          </span>
-        </div>
       </div>
-      <hr />
+
       <Link to={`/gig/${item._id}`} className="link">
         <div className="GigCards__details">
           <img src={heart} alt="heart-icon" />

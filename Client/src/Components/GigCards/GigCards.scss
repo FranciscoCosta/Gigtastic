@@ -1,6 +1,6 @@
 .GigCards{
     width: 324px;
-    height: 474px;
+    height: 500px;
     border: 1px solid lightgrey;
     margin-bottom: 25px;
 
@@ -15,11 +15,15 @@
         display: flex;
         flex-direction: column;
         gap: 1rem;
+        height: 150px;
+        text-overflow: clip;
+
 
         .GigCards__user{
             display: flex;
             align-items: center;
             gap: 0.8rem;
+
 
             img{
                 width: 26px;
@@ -36,6 +40,7 @@
             align-items: center;
             gap: 5px;
 
+
             img{
                 width: 14px;
                 height: 14px;
@@ -47,16 +52,14 @@
             }
         }
     }
-    hr{
-        height: 0;
-        border: 0.5px solid lightgray;
-    }
-
+    
     .GigCards__details{
         padding: 10px 20px;
+        border-top: 0.5px solid lightgray;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        
 
 
         img{

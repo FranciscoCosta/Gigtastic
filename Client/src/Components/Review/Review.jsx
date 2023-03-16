@@ -16,7 +16,7 @@ function Review({ review }) {
       `http://localhost:8080/api/v1/user/${review.userId}`
     );
     setUser(result.data.result);
-    isLoading(false);
+    setIsLoading(false);
   };
   return (
     <div className="Gig__item">
