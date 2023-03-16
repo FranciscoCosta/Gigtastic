@@ -55,7 +55,6 @@ function GigCards({ item }) {
         <p>{item.shortDesc}</p>
         <div className="GigCards__star">
           <img src={start} alt="star icon" />
-          {console.log(item.totalStars, item.stars)}
           <span>
             {!isNaN(item.totalStars / item.stars) &&
               Math.round(item.totalStars / item.stars)}

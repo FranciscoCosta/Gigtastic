@@ -7,5 +7,17 @@ import Features from "./Features/Features";
 import ProjCard from "./ProjCard/ProjCard";
 import Loader from "./Loader/Loader";
 import Reviews from "./Reviews/Reviews";
+import Review from "./Review/Review";
 
-export { Navbar, Footer, Featured, Slide, CatCard, Features, ProjCard, Loader,Reviews };
+export {
+  Navbar,
+  Footer,
+  Featured,
+  Slide,
+  CatCard,
+  Features,
+  ProjCard,
+  Loader,
+  Reviews,
+  Review,
+};
