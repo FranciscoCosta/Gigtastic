@@ -29,17 +29,11 @@
         tr {
           height: 50px;
           th {
-            text-align: left;
+            text-align: center;
           }
           td {
-  
-            sup{
-              font-size: 12px;
-            }
-            
             .image {
-              width: 50px;
-              height: 25px;
+              height: 50px;
               object-fit: cover;
             }
   

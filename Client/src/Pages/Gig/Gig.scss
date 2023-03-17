@@ -213,11 +213,12 @@
   
         .Gig__features{
           display: flex;
+          flex-direction: column;
           .Gig__item{
             display: flex;
             flex-direction: row;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             gap: 10px;
             font-weight: 300;
             color: gray;

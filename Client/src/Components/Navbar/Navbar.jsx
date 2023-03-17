@@ -60,7 +60,7 @@ function Navbar() {
           </Link>
           {!currentUser && (
             <Link to="/register">
-              <span>Sign in</span>
+              <span>Register</span>
             </Link>
           )}
           {/* {!currentUser.isSeller ||

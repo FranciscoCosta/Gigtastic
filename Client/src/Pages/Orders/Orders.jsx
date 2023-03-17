@@ -1,130 +1,109 @@
-import React from 'react'
-import './Orders.scss'
-import { Link } from 'react-router-dom'
-import './Orders.scss'
-import messageIcon from '../../assets/message.png'
+import React from "react";
+import "./Orders.scss";
+import { Link } from "react-router-dom";
+import "./Orders.scss";
+import messageIcon from "../../assets/message.png";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Orders() {
-  const currentUser = {
-    img: "https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg",
-    id: 1,
-    username: "FranciscoCosta",
-    isSeller: true,
+  const navigate = useNavigate();
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const [isLoading, setisLoading] = useState(true);
+  const [orders, setorders] = useState([]);
+
+  useEffect(() => {
+    fetchOrder();
+  }, []);
+
+  const fetchOrder = async () => {
+    const orders = await axios.get("http://localhost:8080/api/v1/orders", {
+      withCredentials: true,
+    });
+    const ordersFilter = await orders.data.orders.filter((orderUser) => {
+      if (currentUser.isSeller) {
+        return orderUser.sellerId === currentUser._id;
+      }
+      if (!currentUser.isSeller) {
+        return orderUser.buyerId === currentUser._id;
+      }
+    });
+    setorders(ordersFilter);
+    setisLoading(false);
+  };
+
+  const handleContact = async (order) => {
+    const sellerId = order.sellerId;
+    const buyerId = order.buyerId;
+    const id = sellerId + buyerId;
+    console.log(id);
+    try {
+      const res = await axios.get(`/conversation/${id}`, {
+        withCredentials: true,
+      });
+      console.log(res);
+      navigate(`/message/${id}`);
+    } catch (err) {
+      console.log(currentUser);
+      if (err.response.status === 404) {
+        const res = await axios.post(
+          `/conversation/`,
+          {
+            withCredentials: true,
+          },
+          {
+            to: currentUser.isSeller ? buyerId : sellerId,
+          }
+        );
+        navigate(`/message/${res.data.id}`);
+      }
+    }
   };
 
   return (
-    <div className='Orders'>
-      <div className="Orders__container">
-        <div className="Orders__title">
-        <h1>{currentUser.isSeller ? "Gigs" : "Orders"}</h1>
-          {currentUser.isSeller && (
-            <Link to="/messages">
-              <button>Add New Gig</button>
-            </Link>
-          )}
+    <div className="Orders">
+      {isLoading ? (
+        "Loading ..."
+      ) : (
+        <div className="Orders__container">
+          <div className="Orders__title">
+            <h1>{currentUser.isSeller ? "Gigs" : "Orders"}</h1>
+            {currentUser.isSeller && (
+              <Link to="/messages">
+                <button>Add New Gig</button>
+              </Link>
+            )}
+          </div>
+          <table>
+            <tr>
+              <th>Image</th>
+              <th>Title</th>
+              <th>Price</th>
+              <th>Contact</th>
+            </tr>
+            {orders.map((item) => (
+              <tr key={`order-${item._id}`}>
+                <td>
+                  <img className="image" src={item.img} alt="" />
+                </td>
+                <td>{item.title}</td>
+                <td>{item.price}$USD</td>
+                <td>
+                  <img
+                    className="delete"
+                    src={messageIcon}
+                    alt=""
+                    onClick={() => handleContact(item)}
+                  />
+                </td>
+              </tr>
+            ))}
+          </table>
         </div>
-        <table>
-          <tr>
-            <th>Image</th>
-            <th>Title</th>
-            <th>Price</th>
-            <th>{currentUser.isSeller ? "Buyer" : "Selller"}</th>
-            <th>Contact</th>
-          </tr>
-          <tr>
-            <td>
-              <img
-                className="image"
-                src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
-            </td>
-            <td>Stunning concept art</td>
-            <td>59.<sup>99</sup></td>
-            <td>13</td>
-            <td>
-              <img className="delete" src={messageIcon} alt="" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img
-                className="image"
-                src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
-            </td>
-            <td>Ai generated concept art</td>
-            <td>120.<sup>99</sup></td>
-            <td>41</td>
-            <td>
-              <img className="delete" src={messageIcon} alt="" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img
-                className="image"
-                src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
-            </td>
-            <td>High quality digital character</td>
-            <td>79.<sup>99</sup></td>
-            <td>55</td>
-            <td>
-              <img className="delete" src={messageIcon} alt="" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img
-                className="image"
-                src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
-            </td>
-            <td>Illustration hyper realistic painting</td>
-            <td>119.<sup>99</sup></td>
-            <td>29</td>
-            <td>
-              <img className="delete" src={messageIcon} alt="" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img
-                className="image"
-                src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
-            </td>
-            <td>Original ai generated digital art</td>
-            <td>59.<sup>99</sup></td>
-            <td>34</td>
-            <td>
-              <img className="delete" src={messageIcon} alt="" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img
-                className="image"
-                src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
-            </td>
-            <td>Text based ai generated art</td>
-            <td>110.<sup>99</sup></td>
-            <td>16</td>
-            <td>
-              <img className="delete" src={messageIcon} alt="" />
-            </td>
-          </tr>
-        </table>
-      </div>
+      )}
     </div>
-  )
+  );
 }
 
-export default Orders
+export default Orders;
