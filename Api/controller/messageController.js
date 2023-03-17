@@ -15,7 +15,7 @@ export const getMessages = async (req, res) => {
 
 export const createMessage = async (req, res) => {
   try {
-    const messages = await createMessageService(req.body);
+    const messages = await createMessageService(req, res);
     if (messages) return res.status(201).json(messages);
     return res.status(400).json({ error: "Message not created" });
   } catch (err) {

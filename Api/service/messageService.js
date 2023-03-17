@@ -17,9 +17,8 @@ export const createMessageService = async (req, res) => {
     userId: req.userId,
     desc: req.body.desc,
   });
-  console.log(newMessage);
+  const savedMessage = await newMessage.save();
   try {
-    const savedMessage = await newMessage.save();
     await Conversation.findOneAndUpdate(
       { id: req.body.conversationId },
       {
@@ -31,7 +30,6 @@ export const createMessageService = async (req, res) => {
       },
       { new: true }
     );
-
     return savedMessage;
   } catch (err) {
     return res.status(500).json({ error: err.message });
