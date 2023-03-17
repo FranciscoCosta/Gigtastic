@@ -39,23 +39,27 @@ function Orders() {
     const id = sellerId + buyerId;
     console.log(id);
     try {
-      const res = await axios.get(`/conversation/${id}`, {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        `http://localhost:8080/api/v1/conversation/${id}`,
+        {
+          withCredentials: true,
+        }
+      );
       console.log(res);
       navigate(`/message/${id}`);
     } catch (err) {
-      console.log(currentUser);
       if (err.response.status === 404) {
+        console.log("entrei");
         const res = await axios.post(
-          `/conversation/`,
-          {
-            withCredentials: true,
-          },
+          `http://localhost:8080/api/v1/conversation/`,
           {
             to: currentUser.isSeller ? buyerId : sellerId,
+          },
+          {
+            withCredentials: true,
           }
         );
+        console.log(res);
         navigate(`/message/${res.data.id}`);
       }
     }

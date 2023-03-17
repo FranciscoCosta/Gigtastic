@@ -3,14 +3,16 @@ import { Link } from "react-router-dom";
 import "./Messages.scss";
 import axios from "axios";
 import moment from "moment";
+
 const Messages = () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const [isLoading, setisLoading] = useState(false);
   const [messages, setmessages] = useState([]);
+  const [read, setread] = useState(false);
 
   useEffect(() => {
     fetchMessages();
-  }, []);
+  }, [read]);
 
   const fetchMessages = async () => {
     console.log("fetch");
@@ -26,11 +28,17 @@ const Messages = () => {
 
   const handleRead = async (id) => {
     console.log(id);
-    const updateStatus = await axios.put(
+    await axios.put(
       `http://localhost:8080/api/v1/conversation/${id}`,
-      { withCredentials: true }
+      {
+        readBySeller: true,
+        readByBuyer: true,
+      },
+      {
+        withCredentials: true,
+      }
     );
-    console.log(updateStatus);
+    setread(!read);
   };
 
   return (
