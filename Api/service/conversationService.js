@@ -14,9 +14,9 @@ export const getConversationsService = async (req, res) => {
 };
 
 export const getConversationService = async (req, res) => {
-  console.log(req.params.id);
   try {
     const conversation = await Conversation.findOne({ id: req.params.id });
+    console.log(conversation);
     return conversation;
   } catch (error) {
     return res.status(500).json({ error });
@@ -40,9 +40,8 @@ export const createConversationService = async (req, res) => {
 };
 
 export const updateConversationService = async (req, res) => {
-  console.log(req.params.id);
   try {
-    const updateConversation = await Conversation.findByIdAndUpdate(
+    const updateConversation = await Conversation.findOneAndUpdate(
       { id: req.params.id },
       {
         readBySeller: true,
@@ -50,6 +49,7 @@ export const updateConversationService = async (req, res) => {
       },
       { new: true }
     );
+    console.log(updateConversation);
     return updateConversation;
   } catch (error) {
     return res.status(500).json({ error });

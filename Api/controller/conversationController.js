@@ -19,9 +19,9 @@ export const getConversation = async (req, res) => {
   try {
     const getconversation = await getConversationService(req, res);
     if (getconversation) return res.status(201).json({ getconversation });
-    return res.status(403).json({ message: "Wasnt able to get conversation" });
+    return res.status(404).json({ message: "Conversation dosent exist" });
   } catch (eror) {
-    return res.status(403).json({ message: "Wasnt able to get conversation" });
+    return res.status(404).json({ message: "Conversation dosent exist" });
   }
 };
 
@@ -40,6 +40,7 @@ export const createConversation = async (req, res) => {
 };
 
 export const updateConversation = async (req, res) => {
+  console.log(req.params.id, "entrei no update");
   try {
     const updatedconversation = await updateConversationService(req, res);
     if (updatedconversation)
