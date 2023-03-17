@@ -6,24 +6,25 @@ import { useParams } from "react-router-dom";
 
 const Message = () => {
   const { id } = useParams();
-
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [update, setupdate] = useState(false);
 
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   useEffect(() => {
     getMessages(id);
-  }, []);
+  }, [update]);
 
   const getMessages = async (id) => {
     try {
       const res = await axios.get(
-        `http://localhost:8080/api/v1/messages/${id}`,
+        `http://localhost:8080/api/v1/message/${id}`,
         {
           withCredentials: true,
         }
       );
-      console.log(res);
+      setMessages(res.data);
     } catch (err) {
       console.log(err);
     }
@@ -32,17 +33,18 @@ const Message = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        `http://localhost:8080/api/v1/messages/`,
+      await axios.post(
+        `http://localhost:8080/api/v1/message/`,
         {
           conversationId: id,
-          desc: e.target[0].value,
+          desc: newMessage,
         },
         {
           withCredentials: true,
         }
       );
-      console.log(res);
+      setupdate(!update);
+      setNewMessage("");
     } catch (err) {
       console.log(err);
     }
@@ -59,10 +61,14 @@ const Message = () => {
           </span>
           <div className="messages">
             {messages.map((m) => (
-              <div className="item" key={m._id}>
+              <div
+                className={m.userId === currentUser._id ? "owner item" : "item"}
+                key={m._id}
+              >
+                {console.log(m.userId, "user", m.currentUser_id, "current")}
                 <img
-                  src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                  alt=""
+                  src="https://www.w3schools.com/howto/img_avatar.png"
+                  alt="profile-default"
                 />
                 <p>{m.desc}</p>
               </div>
@@ -70,7 +76,11 @@ const Message = () => {
           </div>
           <hr />
           <form className="Message__write" onSubmit={handleSubmit}>
-            <textarea type="text" placeholder="write a message" />
+            <textarea
+              type="text"
+              placeholder="write a message"
+              onChange={(e) => setNewMessage(e.target.value)}
+            />
             <button type="submit">Send</button>
           </form>
         </div>
