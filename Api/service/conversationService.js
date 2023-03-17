@@ -1,10 +1,12 @@
 import Conversation from "../models/conversationModel.js";
 
 export const getConversationsService = async (req, res) => {
+  console.log(req.isSeller, req.userId);
   try {
     const conversations = await Conversation.find(
       req.isSeller ? { sellerId: req.userId } : { buyerId: req.userId }
     );
+    console.log(conversations);
     return conversations;
   } catch (error) {
     return res.status(500).json({ error });
@@ -12,6 +14,7 @@ export const getConversationsService = async (req, res) => {
 };
 
 export const getConversationService = async (req, res) => {
+  console.log(req.params.id);
   try {
     const conversation = await Conversation.findOne({ id: req.params.id });
     return conversation;
@@ -37,18 +40,17 @@ export const createConversationService = async (req, res) => {
 };
 
 export const updateConversationService = async (req, res) => {
+  console.log(req.params.id);
   try {
     const updateConversation = await Conversation.findByIdAndUpdate(
       { id: req.params.id },
       {
-        $set: {
-          readBySeller: req.isSeller,
-          readByBuyer: !req.isSeller,
-        },
+        readBySeller: true,
+        readByBuyer: true,
       },
       { new: true }
     );
-    return res.status(200).json({ updateConversation });
+    return updateConversation;
   } catch (error) {
     return res.status(500).json({ error });
   }

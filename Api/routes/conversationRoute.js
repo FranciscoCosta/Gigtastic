@@ -13,6 +13,10 @@ const conversationRoute = express.Router();
 conversationRoute.post("/api/v1/conversation", verifyToken, createConversation);
 conversationRoute.get("/api/v1/conversations", verifyToken, getConversations);
 conversationRoute.get("/api/v1/conversation/:id", verifyToken, getConversation);
-conversationRoute.put("/api/v1/conversation", verifyToken, updateConversation);
+conversationRoute.put(
+  "/api/v1/conversation/:id",
+  verifyToken,
+  updateConversation
+);
 
 export default conversationRoute;
