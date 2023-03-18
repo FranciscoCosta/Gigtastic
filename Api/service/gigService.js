@@ -1,17 +1,30 @@
 import Gig from "../models/gigModel.js";
 
 export const addGigService = async (req, res) => {
+  console.log(req.body);
   try {
     if (!req.isSeller)
       return res.status(401).json({ message: "Not authorized" });
     const result = new Gig({
-      userId: req.userId,
-      ...req.body,
+      userId: req.body.userId,
+      title: req.body.title,
+      category: req.body.cat,
+      cover: req.body.cover,
+      images: req.body.images,
+      desc: req.body.desc,
+      shortTitle: req.body.shortTitle,
+      shortDesc: req.body.shortDesc,
+      deliveryTime: req.body.deliveryTime,
+      revisionNumber: req.body.revisionNumber,
+      features: req.body.features,
+      price: req.body.price,
     });
+
     const saveGig = await result.save();
-    if (result) return saveGig;
+    console.log(saveGig, "GIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIGS");
+    if (result) return result;
   } catch (error) {
-    res.status(500).send(error.message);
+    return error;
   }
 };
 
