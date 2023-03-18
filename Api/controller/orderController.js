@@ -1,4 +1,4 @@
-import { addOrderService, getOrdersService } from "../service/orderSerivce.js";
+import { getOrdersService, intentService } from "../service/orderSerivce.js";
 
 export const getOrders = async (req, res) => {
   try {
@@ -10,12 +10,12 @@ export const getOrders = async (req, res) => {
   }
 };
 
-export const addOrder = async (req, res) => {
+export const intent = async (req, res) => {
   try {
-    const result = await addOrderService(req, res);
+    const result = await intentService(req, res);
     if (result) return res.status(200).json({ result });
     return res.status(404).json({ message: "Couldnt register orders" });
   } catch (error) {
-    return res.status(500).send(error);
+    return res.status(404).json({ message: "Couldnt register orders" });
   }
 };

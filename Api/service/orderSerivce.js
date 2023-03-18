@@ -1,25 +1,7 @@
 import Order from "../models/orderModel.js";
 import Gig from "../models/gigModel.js";
-
-export const addOrderService = async (req, res) => {
-  try {
-    const gig = await Gig.findById(req.params.id);
-    const newOrder = await new Order({
-      gigId: req.params.id,
-      img: gig.cover,
-      title: gig.title,
-      price: gig.price,
-      sellerId: gig.userId,
-      buyerId: req.userId,
-      isCompleted: false,
-      payment_intent: "temporary",
-    });
-    await newOrder.save();
-    return res.status(200).json({ newOrder });
-  } catch (error) {
-    return res.status(500).send(error);
-  }
-};
+import Stripe from "stripe";
+import dotenv from "dotenv";
 
 export const getOrdersService = async (req, res) => {
   try {
@@ -32,4 +14,35 @@ export const getOrdersService = async (req, res) => {
   } catch (error) {
     return res.status(500).send(error);
   }
+};
+
+export const intentService = async (req, res) => {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+  const gig = await Gig.findById(req.params.id);
+
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: gig.price * 100,
+    currency: "usd",
+    automatic_payment_methods: {
+      enabled: true,
+    },
+  });
+
+  const newOrder = await new Order({
+    gigId: req.params.id,
+    img: gig.cover,
+    title: gig.title,
+    price: gig.price,
+    sellerId: gig.userId,
+    buyerId: req.userId,
+    isCompleted: false,
+    payment_intent: paymentIntent.id,
+  });
+
+  await newOrder.save();
+
+  res.status(200).send({
+    clientSecret: paymentIntent.client_secret,
+  });
 };

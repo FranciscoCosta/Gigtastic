@@ -9,7 +9,7 @@ import {
 
 const reviewRoute = express.Router();
 
-reviewRoute.post("/api/v1/review", verifyToken, addReview);
+reviewRoute.post("/api/v1/review/", verifyToken, addReview);
 reviewRoute.delete("/api/v1/review/:gigId", verifyToken, deleteReview);
 reviewRoute.get("/api/v1/reviews/:gigId", getReviews);
 
