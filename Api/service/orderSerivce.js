@@ -46,3 +46,17 @@ export const intentService = async (req, res) => {
     clientSecret: paymentIntent.client_secret,
   });
 };
+
+export const confirmOrdersService = async (req, res) => {
+  const order = await Order.findOneAndUpdate(
+    {
+      payment_intent: req.body.payment_intent,
+    },
+    {
+      $set: {
+        isCompleted: true,
+      },
+    }
+  );
+  return order;
+};
