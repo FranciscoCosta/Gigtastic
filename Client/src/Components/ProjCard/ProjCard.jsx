@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./ProjCard.scss";
-import Slider from "infinite-react-carousel";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Carousel from "react-multi-carousel";
@@ -14,7 +13,7 @@ const responsive = {
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 3,
+    items: 4,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },

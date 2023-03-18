@@ -74,7 +74,7 @@ function Orders() {
           <div className="Orders__title">
             <h1>{currentUser.isSeller ? "Gigs" : "Orders"}</h1>
             {currentUser.isSeller && (
-              <Link to="/messages">
+              <Link to="/add">
                 <button>Add New Gig</button>
               </Link>
             )}

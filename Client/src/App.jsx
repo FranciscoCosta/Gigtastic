@@ -8,9 +8,11 @@ import {
   MyGigs,
   Login,
   Add,
+  Pay,
   Message,
   Messages,
   Register,
+  Success,
 } from "./Pages/index";
 import { Navbar, Footer } from "./Components/index";
 import "./App.scss";
@@ -78,6 +80,14 @@ function App() {
         {
           path: "/register",
           element: <Register />,
+        },
+        {
+          path: "/pay/:id",
+          element: <Pay />,
+        },
+        {
+          path: "/success",
+          element: <Success />,
         },
       ],
     },

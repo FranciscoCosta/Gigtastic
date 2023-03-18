@@ -3,7 +3,7 @@ import "./Gig.scss";
 import star from "../../assets/star.png";
 import Slider from "infinite-react-carousel";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import check from "../../assets/greencheck.png";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -152,7 +152,9 @@ function Gig() {
                 );
               })}
             </div>
-            <button>Continue</button>
+            <Link to={`/pay/${id}`}>
+              <button>Continue</button>
+            </Link>
           </div>
         </div>
       )}

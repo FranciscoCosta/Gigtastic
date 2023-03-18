@@ -36,9 +36,10 @@ function Reviews({ id }) {
   };
 
   const handleSumbit = async (e) => {
+    console.log("aquiiiiii");
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:8080/api/v1/review/${id}`, {
+      await axios.post(`http://localhost:8080/api/v1/review/`, {
         ...newreview,
         userId: currentUser._id,
       });

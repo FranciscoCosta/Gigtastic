@@ -8,6 +8,7 @@ import ProjCard from "./ProjCard/ProjCard";
 import Loader from "./Loader/Loader";
 import Reviews from "./Reviews/Reviews";
 import Review from "./Review/Review";
+import CheckoutForm from "./CheckoutForm/CheckoutForm";
 
 export {
   Navbar,
@@ -20,4 +21,5 @@ export {
   Loader,
   Reviews,
   Review,
+  CheckoutForm,
 };
