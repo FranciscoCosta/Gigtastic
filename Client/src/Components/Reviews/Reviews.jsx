@@ -19,6 +19,8 @@ function Reviews({ id }) {
     fetchData(id);
   }, []);
 
+  const starComp = <img src={star} alt="star" />;
+
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   const fetchData = async (id) => {

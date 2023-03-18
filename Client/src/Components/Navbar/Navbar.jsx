@@ -48,7 +48,9 @@ function Navbar() {
       <div className="Navbar__container">
         <div className="Navbar__logo">
           <Link to="/" className="link">
-            <h1 className={navbarActive && "Navbar-tilte active"}>Gigtastic</h1>
+            <h1 className={navbarActive ? "Navbar-tilte active" : undefined}>
+              Gigtastic
+            </h1>
           </Link>
         </div>
         <div className="Navbar__links">
