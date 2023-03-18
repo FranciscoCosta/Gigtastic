@@ -3,7 +3,7 @@ import "./Gig.scss";
 import star from "../../assets/star.png";
 import Slider from "infinite-react-carousel";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import check from "../../assets/greencheck.png";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -33,6 +33,10 @@ function Gig() {
   const [isLoading, setIsLoading] = useState(true);
   const [gig, setGig] = useState([]);
   const [user, setUser] = useState([]);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const currentUser = JSON.parse(localStorage.getItem("user"));
 
   const { id } = useParams();
   const fetchData = async (id) => {
@@ -48,6 +52,14 @@ function Gig() {
   useEffect(() => {
     fetchData(id);
   }, []);
+
+  const handlePayment = (id) => {
+    if (!currentUser)
+      setError("You need to be logged in a buyer account to buy a gig!");
+    else {
+      navigate(`/pay/${id}`);
+    }
+  };
 
   return (
     <div className="Gig">
@@ -152,9 +164,14 @@ function Gig() {
                 );
               })}
             </div>
-            <Link to={`/pay/${id}`}>
-              <button>Continue</button>
-            </Link>
+            <button
+              onClick={() => {
+                handlePayment(id);
+              }}
+            >
+              Continue
+            </button>
+            <p className="Gig__error">{error}</p>
           </div>
         </div>
       )}

@@ -17,9 +17,7 @@ function Reviews({ id }) {
 
   useEffect(() => {
     fetchData(id);
-  }, []);
-
-  const starComp = <img src={star} alt="star" />;
+  }, [reviewed]);
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
@@ -41,10 +39,17 @@ function Reviews({ id }) {
     console.log("aquiiiiii");
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:8080/api/v1/review/`, {
-        ...newreview,
-        userId: currentUser._id,
-      });
+      await axios.post(
+        `http://localhost:8080/api/v1/review/`,
+        {
+          ...newreview,
+          userId: currentUser._id,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      setreviewed(!reviewed);
     } catch (err) {
       console.log(err);
     }
@@ -76,7 +81,7 @@ function Reviews({ id }) {
               name="desc"
               onChange={handleChange}
             />
-            <select name="stars" id="">
+            <select name="stars" id="" onChange={handleChange}>
               <option value={1}>1</option>
               <option value={2}>2</option>
               <option value={3}>3</option>
