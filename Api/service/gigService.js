@@ -74,3 +74,14 @@ export const getGigsService = async (req, res) => {
     return res.status(404).json({ message: "Gigs not found" });
   }
 };
+
+export const getGigsuserService = async (req, res) => {
+  try {
+    console.log("Aquii");
+    const gigsUser = await Gig.find({ userId: req.userId });
+    console.log(gigsUser);
+    return gigsUser;
+  } catch (error) {
+    console.log(error);
+  }
+};

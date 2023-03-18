@@ -3,6 +3,7 @@ import {
   deleteGigService,
   getGigService,
   getGigsService,
+  getGigsuserService,
 } from "../service/gigService.js";
 
 export const addGig = async (req, res) => {
@@ -40,6 +41,15 @@ export const getGig = async (req, res) => {
 export const getGigs = async (req, res) => {
   try {
     const result = await getGigsService(req, res);
+    return res.status(201).json({ result });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+export const getGigsuser = async (req, res) => {
+  try {
+    const result = await getGigsuserService(req, res);
     return res.status(201).json({ result });
   } catch (error) {
     return res.status(500).json({ message: error.message });
