@@ -88,6 +88,9 @@ function Navbar() {
                       <Link to="/add">
                         <span>Add New Gig</span>
                       </Link>
+                      <Link to="/myGigs">
+                        <span>Mygigs</span>
+                      </Link>
                     </>
                   )}
                   <Link to="/orders">

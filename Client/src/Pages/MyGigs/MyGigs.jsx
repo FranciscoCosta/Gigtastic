@@ -1,128 +1,95 @@
-import React from 'react'
-import './MyGigs.scss'
-import { Link } from 'react-router-dom'
-import './MyGigs.scss'
-import deleteIcon from '../../assets/delete.png'
+import React, { useState, useEffect } from "react";
+import "./MyGigs.scss";
+import { Link } from "react-router-dom";
+import "./MyGigs.scss";
+import deleteIcon from "../../assets/delete.png";
+import axios from "axios";
 
 function MyGigs() {
-  const currentUser = {
-    id: 1,
-    username: "Anna",
-    isSeller: true,
+  const [isLoading, setIsLoading] = useState(false);
+  const [gigs, setGigs] = useState([]);
+  const [update, setupdate] = useState(false);
+
+  useEffect(() => {
+    fetchGigs();
+  }, [update]);
+
+  const fetchGigs = async () => {
+    setIsLoading(true);
+    try {
+      const gigsFromuser = await axios.get(
+        `http://localhost:8080/api/v1/gigsuser`,
+        {
+          withCredentials: true,
+        }
+      );
+      setGigs(gigsFromuser.data.result);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  const handleDelete = async (id) => {
+    try {
+      const gigDelete = await axios.delete(
+        `http://localhost:8080/api/v1/gig/${id}`,
+        {
+          withCredentials: true,
+        }
+      );
+
+      console.log(gigDelete);
+    } catch (error) {
+      console.log(error);
+    }
+    setupdate(!update);
+  };
+
   return (
-    <div className='MyGigs'>
-      <div className="MyGigs__container">
-        <div className="MyGigs__title">
-        <h1>{currentUser.isSeller ? "Gigs" : "Orders"}</h1>
-          {currentUser.isSeller && (
+    <div className="MyGigs">
+      {isLoading ? (
+        "loading...."
+      ) : (
+        <div className="MyGigs__container">
+          {console.log(gigs)}
+          <div className="MyGigs__title">
+            <h1>Gigs</h1>
             <Link to="/add">
               <button>Add New Gig</button>
             </Link>
-          )}
+          </div>
+          <table>
+            <tr>
+              <th>Image</th>
+              <th>Title</th>
+              <th>Price</th>
+              <th>Sales</th>
+              <th>Action</th>
+            </tr>
+            {gigs.map((gig) => (
+              <tr key={gig.title}>
+                <td>
+                  <img className="image" src={gig.cover} alt="gig-cover" />
+                </td>
+                <td>{gig.title}</td>
+                <td>{gig.price}</td>
+                <td>{gig.sales}</td>
+                <td>
+                  <img
+                    className="delete"
+                    src={deleteIcon}
+                    alt=""
+                    onClick={() => handleDelete(gig._id)}
+                  />
+                </td>
+              </tr>
+            ))}
+          </table>
         </div>
-        <table>
-          <tr>
-            <th>Image</th>
-            <th>Title</th>
-            <th>Price</th>
-            <th>Sales</th>
-            <th>Action</th>
-          </tr>
-          <tr>
-            <td>
-              <img
-                className="image"
-                src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
-            </td>
-            <td>Stunning concept art</td>
-            <td>59.<sup>99</sup></td>
-            <td>13</td>
-            <td>
-              <img className="delete" src={deleteIcon} alt="" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img
-                className="image"
-                src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
-            </td>
-            <td>Ai generated concept art</td>
-            <td>120.<sup>99</sup></td>
-            <td>41</td>
-            <td>
-              <img className="delete" src={deleteIcon} alt="" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img
-                className="image"
-                src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
-            </td>
-            <td>High quality digital character</td>
-            <td>79.<sup>99</sup></td>
-            <td>55</td>
-            <td>
-              <img className="delete" src={deleteIcon} alt="" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img
-                className="image"
-                src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
-            </td>
-            <td>Illustration hyper realistic painting</td>
-            <td>119.<sup>99</sup></td>
-            <td>29</td>
-            <td>
-              <img className="delete" src={deleteIcon} alt="" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img
-                className="image"
-                src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
-            </td>
-            <td>Original ai generated digital art</td>
-            <td>59.<sup>99</sup></td>
-            <td>34</td>
-            <td>
-              <img className="delete" src={deleteIcon} alt="" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img
-                className="image"
-                src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
-              />
-            </td>
-            <td>Text based ai generated art</td>
-            <td>110.<sup>99</sup></td>
-            <td>16</td>
-            <td>
-              <img className="delete" src={deleteIcon} alt="" />
-            </td>
-          </tr>
-        </table>
-      </div>
+      )}
     </div>
-  )
+  );
 }
 
-export default MyGigs
+export default MyGigs;
