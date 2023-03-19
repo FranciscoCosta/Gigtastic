@@ -21,6 +21,13 @@ export const getConversationService = async (req, res) => {
 };
 
 export const createConversationService = async (req, res) => {
+  console.log(
+    "entrei na conversation Service",
+    req.body,
+    "REQUEST_BODY",
+    req.userId,
+    "REQUEST_USERID"
+  );
   const newConversation = new Conversation({
     id: req.isSeller ? req.userId + req.body.to : req.body.to + req.userId,
     sellerId: req.isSeller ? req.userId : req.body.to,
