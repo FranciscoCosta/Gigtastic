@@ -26,7 +26,7 @@ function MyGigs() {
       setGigs(gigsFromuser.data.result);
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      return error;
     }
   };
 
@@ -36,7 +36,7 @@ function MyGigs() {
         withCredentials: true,
       });
     } catch (error) {
-      console.log(error);
+      return error;
     }
     setupdate(!update);
   };

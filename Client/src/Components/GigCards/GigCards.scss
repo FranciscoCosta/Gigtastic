@@ -16,7 +16,7 @@
         flex-direction: column;
         gap: 1rem;
         height: 150px;
-        text-overflow: clip;
+
 
 
         .GigCards__user{
@@ -33,6 +33,11 @@
         }
         p{
             color: #111;
+            height: 80px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            width: 300px;
+            white-space: normal;
         }
 
         .GigCards__star{

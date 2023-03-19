@@ -5,6 +5,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { CheckoutForm } from "../../Components";
+import { Audio } from "react-loader-spinner";
 
 const stripePromise = loadStripe(
   "pk_test_51MmjZULyAsPMyCj4OKTdisyLXVnTAnjliujFmxMnTSGONN1UAJPJQLhABKzQpF4Fh6tgOVqFtUaJjZFclBqT3E6N00g9OD12UV"
@@ -12,9 +13,11 @@ const stripePromise = loadStripe(
 
 function Pay() {
   const [clientSecret, setClientSecret] = useState("");
+  const [isLoading, setisLoading] = useState(false);
 
   const { id } = useParams();
   useEffect(() => {
+    setisLoading(true);
     const makeRequest = async () => {
       try {
         const response = await axios.post(
@@ -25,8 +28,9 @@ function Pay() {
           }
         );
         setClientSecret(response.data.clientSecret);
+        setisLoading(false);
       } catch (error) {
-        console.log(error);
+        return error;
       }
     };
     makeRequest();
@@ -42,10 +46,22 @@ function Pay() {
 
   return (
     <div className="Pay">
-      {clientSecret && (
-        <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm />
-        </Elements>
+      {isLoading ? (
+        <Audio
+          height="80"
+          width="80"
+          radius="9"
+          color="#1db954"
+          ariaLabel="loading"
+          wrapperStyle
+          wrapperClass
+        />
+      ) : (
+        clientSecret && (
+          <Elements options={options} stripe={stripePromise}>
+            <CheckoutForm />
+          </Elements>
+        )
       )}
     </div>
   );

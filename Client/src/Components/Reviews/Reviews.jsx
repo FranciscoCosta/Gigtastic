@@ -50,7 +50,7 @@ function Reviews({ id }) {
       );
       setreviewed(!reviewed);
     } catch (err) {
-      console.log(err);
+      return err;
     }
   };
 
@@ -64,7 +64,7 @@ function Reviews({ id }) {
     <div className="Gig__reviews">
       <h2>Reviews</h2>
       {reviews.length === 0 ? (
-        <h2>This product dosent have reviews.</h2>
+        <h2>This product {"doesn't"} have reviews.</h2>
       ) : (
         reviews.map((review) => (
           <Review review={review} key={`review-${review._id}`} />

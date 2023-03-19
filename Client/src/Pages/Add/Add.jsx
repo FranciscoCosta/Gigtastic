@@ -44,7 +44,7 @@ const Add = () => {
       setUploading(false);
       dispatch({ type: "ADD_IMAGES", payload: { cover, images } });
     } catch (err) {
-      console.log(err);
+      return err;
     }
   };
 
@@ -57,7 +57,7 @@ const Add = () => {
         withCredentials: true,
       });
     } catch (error) {
-      console.log(error);
+      return error;
     }
     navigate("/mygigs");
   };

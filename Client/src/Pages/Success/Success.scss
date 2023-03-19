@@ -1,4 +1,24 @@
 .Success{
     padding-top: 10rem;
     min-height: 100vh;
+
+    .Success__container{
+        margin: 0 auto;
+        width: 1400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        min-height: 80vh;
+
+        h1{
+            color: 
+            #1db954;
+            margin-bottom: 2rem;
+        }
+        p{
+            font-size: 1.2rem;
+            text-align: center;
+        }
+    }
 }

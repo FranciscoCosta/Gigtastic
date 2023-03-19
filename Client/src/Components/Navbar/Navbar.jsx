@@ -32,7 +32,7 @@ function Navbar() {
       await localStorage.removeItem("currentUser");
       navigate("/login");
     } catch (err) {
-      console.log(err);
+      return err;
     }
   };
 

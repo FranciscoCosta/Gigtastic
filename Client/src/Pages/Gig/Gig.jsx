@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./Gig.scss";
 import star from "../../assets/star.png";
-import Slider from "infinite-react-carousel";
 import axios from "axios";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import check from "../../assets/greencheck.png";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Reviews } from "../../Components";
+import { Audio } from "react-loader-spinner";
 
 const responsive = {
   superLargeDesktop: {
@@ -54,7 +54,6 @@ function Gig() {
   }, []);
 
   const handlePayment = (id) => {
-    console.log(currentUser);
     if (!currentUser) setError("You need to be logged in to order a gig!");
     if (currentUser.isSeller)
       setError("Login in a buyer account to order a gig!");
@@ -66,7 +65,15 @@ function Gig() {
   return (
     <div className="Gig">
       {isLoading ? (
-        "isLoading"
+        <Audio
+          height="80"
+          width="80"
+          radius="9"
+          color="#1db954"
+          ariaLabel="loading"
+          wrapperStyle
+          wrapperClass
+        />
       ) : (
         <div className="Gig__container">
           <div className="Gig__left">
@@ -79,11 +86,10 @@ function Gig() {
               <img className="pp" src={user.img} alt="userPhoto" />
               <span>{user.username}</span>
               <div className="Gig__stars">
-                {Array(Math.round(gig.totalStars / gig.stars))
-                  .fill()
-                  .map((item, i) => (
-                    <img src={star} alt="" key={i} />
-                  ))}
+                {gig.totalStars > 0 &&
+                  Array(Math.round(gig.totalStars / gig.stars))
+                    .fill()
+                    .map((item, i) => <img src={star} alt="" key={i} />)}
                 <span>
                   {!isNaN(gig.totalStars / gig.stars) &&
                     Math.round(gig.totalStars / gig.stars)}

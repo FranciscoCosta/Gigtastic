@@ -4,7 +4,7 @@ import down from "../../assets/down.png";
 import GigCards from "../../Components/GigCards/GigCards";
 import { Context } from "../../Context/context";
 import axios from "axios";
-import { Loader } from "../../Components";
+import { Audio } from "react-loader-spinner";
 
 function Gigs() {
   const { category, search, userFilter, setuserFilter } = useContext(Context);
@@ -80,7 +80,15 @@ function Gigs() {
         </div>
         <div className="Gigs__cards">
           {isLoading ? (
-            <Loader />
+            <Audio
+              height="80"
+              width="80"
+              radius="9"
+              color="#1db954"
+              ariaLabel="loading"
+              wrapperStyle
+              wrapperClass
+            />
           ) : (
             gigs.map((gig) => <GigCards key={gig._id} item={gig} />)
           )}

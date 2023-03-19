@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Success.scss";
+import { Audio } from "react-loader-spinner";
+
 const Success = () => {
   const { search } = useLocation();
   const navigate = useNavigate();
@@ -20,7 +22,7 @@ const Success = () => {
           navigate("/orders");
         }, 5000);
       } catch (err) {
-        console.log(err);
+        return err;
       }
     };
 
@@ -29,8 +31,23 @@ const Success = () => {
 
   return (
     <div className="Success">
-      Payment successful. You are being redirected to the orders page. Please do
-      not close the page
+      <div className="Success__container">
+        <Audio
+          height="80"
+          width="80"
+          radius="9"
+          color="#1db954"
+          ariaLabel="loading"
+          wrapperStyle
+          wrapperClass
+        />
+        ;<h1>Payment successful.</h1>
+        <p>
+          You are being redirected to the orders page.
+          <br />
+          Please do not close the page.
+        </p>
+      </div>
     </div>
   );
 };

@@ -17,7 +17,6 @@ const Message = () => {
   }, [update]);
 
   const getMessages = async (id) => {
-    console.log(id);
     try {
       const res = await axios.get(
         `http://localhost:8080/api/v1/message/${id}`,
@@ -27,7 +26,7 @@ const Message = () => {
       );
       setMessages(res.data);
     } catch (err) {
-      console.log(err);
+      return err;
     }
   };
 
@@ -47,7 +46,7 @@ const Message = () => {
       setupdate(!update);
       setNewMessage("");
     } catch (err) {
-      console.log(err);
+      return err;
     }
   };
 
@@ -58,7 +57,9 @@ const Message = () => {
       ) : (
         <div className="Message__container">
           <span className="Message__info">
-            <Link to="/messages">Messages</Link> - John Doe -
+            <Link to="/messages" className="link">
+              Messages {" >"}
+            </Link>
           </span>
           <div className="messages">
             {messages.map((m) => (

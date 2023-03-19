@@ -25,8 +25,22 @@ const Messages = () => {
     setisLoading(false);
   };
 
+  const getUsername = async (buyer, sellewr) => {
+    const userNameBuyer = await axios.get(
+      `http://localhost:8080/api/v1/user${buyer}`,
+      {
+        withCredentials: true,
+      }
+    );
+    const userNameSeller = await axios.get(
+      `http://localhost:8080/api/v1/user${seller}`,
+      {
+        withCredentials: true,
+      }
+    );
+  };
+
   const handleRead = async (id) => {
-    console.log(id);
     await axios.put(
       `http://localhost:8080/api/v1/conversation/${id}`,
       {
