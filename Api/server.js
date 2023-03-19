@@ -20,7 +20,7 @@ dotenv.config();
 
 app.use(
   cors({
-    origin: ["http://localhost:8080", "http://localhost:5173"],
+    origin: ["http://localhost:8000", "http://localhost:5173"],
     credentials: true,
   })
 );
@@ -45,8 +45,8 @@ app.use(messageRoute);
 const startServer = async () => {
   try {
     await connectDB(process.env.MONGODB_URL);
-    app.listen(8080, () => {
-      console.log("Server is running on port 8080");
+    app.listen(8000, () => {
+      console.log("Server is running on port 8000");
     });
   } catch (error) {
     console.log(error);
