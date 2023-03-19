@@ -9,7 +9,6 @@ import {
 export const addGig = async (req, res) => {
   try {
     const result = await addGigService(req, res);
-    console.log(result, "result");
     if (result) return res.status(201).json({ message: "Gig added!" });
     return res.status(500).json({ message: "Error" });
   } catch (error) {

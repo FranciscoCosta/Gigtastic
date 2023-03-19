@@ -75,6 +75,6 @@ export const getGigsuserService = async (req, res) => {
     const gigsUser = await Gig.find({ userId: req.userId });
     return gigsUser;
   } catch (error) {
-    console.log(error);
+    return error;
   }
 };

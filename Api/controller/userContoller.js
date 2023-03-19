@@ -21,6 +21,6 @@ export const addUser = async (req, res) => {
     if (result) return res.status(201).json({ result });
     return res.status(500).json({ message: "Error" });
   } catch (error) {
-    console.log(error);
+    return res.status(500).json({ message: "Error" });
   }
 };

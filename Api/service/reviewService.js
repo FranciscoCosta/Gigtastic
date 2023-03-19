@@ -2,7 +2,6 @@ import Review from "../models/reviewModel.js";
 import Gig from "../models/gigModel.js";
 
 export const addReviewService = async (req, res) => {
-  console.log("entrei na service");
   if (req.isSeller)
     return res.status(403).json({ message: "Sellers can't create a review!" });
 

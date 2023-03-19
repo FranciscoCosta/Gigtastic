@@ -8,7 +8,6 @@ export const verifyToken = (req, res, next) => {
     if (err) res.status(403).json({ message: "Token dosent exist!" });
     req.userId = payload.id;
     req.isSeller = payload.isSeller;
-    console.log("passei vToken");
     next();
   });
 };
