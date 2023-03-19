@@ -54,7 +54,7 @@ function Orders() {
             withCredentials: true,
           }
         );
-        navigate(`/message/${res.data.id}`);
+        navigate(`/message/${res.data.conv.id}`);
       }
     }
   };

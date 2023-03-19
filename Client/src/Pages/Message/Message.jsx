@@ -17,6 +17,7 @@ const Message = () => {
   }, [update]);
 
   const getMessages = async (id) => {
+    console.log(id);
     try {
       const res = await axios.get(
         `http://localhost:8080/api/v1/message/${id}`,

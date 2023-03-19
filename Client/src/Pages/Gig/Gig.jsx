@@ -55,8 +55,9 @@ function Gig() {
 
   const handlePayment = (id) => {
     console.log(currentUser);
-    if (!currentUser)
-      setError("You need to be logged in a buyer account to buy a gig!");
+    if (!currentUser) setError("You need to be logged in to order a gig!");
+    if (currentUser.isSeller)
+      setError("Login in a buyer account to order a gig!");
     else {
       navigate(`/pay/${id}`);
     }

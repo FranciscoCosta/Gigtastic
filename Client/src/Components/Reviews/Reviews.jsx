@@ -36,7 +36,6 @@ function Reviews({ id }) {
   };
 
   const handleSumbit = async (e) => {
-    console.log("aquiiiiii");
     e.preventDefault();
     try {
       await axios.post(
@@ -72,7 +71,7 @@ function Reviews({ id }) {
         ))
       )}
       {currentUser && !currentUser.isSeller && !reviewed && (
-        <div className="add">
+        <div className="addReview">
           <h3>Add a review of this product</h3>
           <form action="" className="addForm" onSubmit={handleSumbit}>
             <input
