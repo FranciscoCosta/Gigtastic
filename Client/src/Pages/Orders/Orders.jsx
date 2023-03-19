@@ -18,7 +18,7 @@ function Orders() {
   }, []);
 
   const fetchOrder = async () => {
-    const orders = await axios.get("http://localhost:8080/api/v1/orders", {
+    const orders = await axios.get("http://localhost:8000/api/v1/orders", {
       withCredentials: true,
     });
     const ordersFilter = await orders.data.orders.filter((orderUser) => {
@@ -39,14 +39,14 @@ function Orders() {
     const id = sellerId + buyerId;
 
     try {
-      await axios.get(`http://localhost:8080/api/v1/conversation/${id}`, {
+      await axios.get(`http://localhost:8000/api/v1/conversation/${id}`, {
         withCredentials: true,
       });
       navigate(`/message/${id}`);
     } catch (err) {
       if (err.response.status === 404) {
         const res = await axios.post(
-          `http://localhost:8080/api/v1/conversation`,
+          `http://localhost:8000/api/v1/conversation`,
           {
             to: currentUser.isSeller ? buyerId : sellerId,
           },

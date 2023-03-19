@@ -18,7 +18,7 @@ function MyGigs() {
     setIsLoading(true);
     try {
       const gigsFromuser = await axios.get(
-        `http://localhost:8080/api/v1/gigsuser`,
+        `http://localhost:8000/api/v1/gigsuser`,
         {
           withCredentials: true,
         }
@@ -32,7 +32,7 @@ function MyGigs() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8080/api/v1/gig/${id}`, {
+      await axios.delete(`http://localhost:8000/api/v1/gig/${id}`, {
         withCredentials: true,
       });
     } catch (error) {

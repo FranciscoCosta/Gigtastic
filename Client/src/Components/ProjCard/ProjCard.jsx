@@ -30,13 +30,13 @@ export default function ProjCard() {
   const [gigs, setGigs] = useState([]);
   const [projects, setprojects] = useState([]);
   const fetchData = async () => {
-    const result = await axios.get(`http://localhost:8080/api/v1/gigs`, {
+    const result = await axios.get(`http://localhost:8000/api/v1/gigs`, {
       withCredentials: true,
     });
     setGigs(result.data.result);
     const gigsWithUsers = result.data.result.map(async (item) => {
       const resultUser = await axios.get(
-        `http://localhost:8080/api/v1/user/${item.userId}`,
+        `http://localhost:8000/api/v1/user/${item.userId}`,
         {
           withCredentials: true,
         }

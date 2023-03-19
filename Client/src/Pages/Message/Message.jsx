@@ -19,7 +19,7 @@ const Message = () => {
   const getMessages = async (id) => {
     try {
       const res = await axios.get(
-        `http://localhost:8080/api/v1/message/${id}`,
+        `http://localhost:8000/api/v1/message/${id}`,
         {
           withCredentials: true,
         }
@@ -34,7 +34,7 @@ const Message = () => {
     e.preventDefault();
     try {
       await axios.post(
-        `http://localhost:8080/api/v1/message/`,
+        `http://localhost:8000/api/v1/message/`,
         {
           conversationId: id,
           desc: newMessage,

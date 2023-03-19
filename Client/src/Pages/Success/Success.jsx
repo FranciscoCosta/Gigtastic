@@ -14,7 +14,7 @@ const Success = () => {
     const makeRequest = async () => {
       try {
         await axios.put(
-          "http://localhost:8080/api/v1/orders",
+          "http://localhost:8000/api/v1/orders",
           { payment_intent },
           { withCredentials: true }
         );

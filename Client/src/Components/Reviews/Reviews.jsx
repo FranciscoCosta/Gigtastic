@@ -23,7 +23,7 @@ function Reviews({ id }) {
 
   const fetchData = async (id) => {
     const result = await axios.get(
-      `http://localhost:8080/api/v1/reviews/${id}`
+      `http://localhost:8000/api/v1/reviews/${id}`
     );
     const totalReviews = result.data.result;
     setreviews(totalReviews);
@@ -39,7 +39,7 @@ function Reviews({ id }) {
     e.preventDefault();
     try {
       await axios.post(
-        `http://localhost:8080/api/v1/review/`,
+        `http://localhost:8000/api/v1/review/`,
         {
           ...newreview,
           userId: currentUser._id,

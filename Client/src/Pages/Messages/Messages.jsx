@@ -16,7 +16,7 @@ const Messages = () => {
 
   const fetchMessages = async () => {
     const messages = await axios.get(
-      "http://localhost:8080/api/v1/conversations",
+      "http://localhost:8000/api/v1/conversations",
       {
         withCredentials: true,
       }
@@ -27,13 +27,13 @@ const Messages = () => {
 
   const getUsername = async (buyer, sellewr) => {
     const userNameBuyer = await axios.get(
-      `http://localhost:8080/api/v1/user${buyer}`,
+      `http://localhost:8000/api/v1/user${buyer}`,
       {
         withCredentials: true,
       }
     );
     const userNameSeller = await axios.get(
-      `http://localhost:8080/api/v1/user${seller}`,
+      `http://localhost:8000/api/v1/user${seller}`,
       {
         withCredentials: true,
       }
@@ -42,7 +42,7 @@ const Messages = () => {
 
   const handleRead = async (id) => {
     await axios.put(
-      `http://localhost:8080/api/v1/conversation/${id}`,
+      `http://localhost:8000/api/v1/conversation/${id}`,
       {
         readBySeller: true,
         readByBuyer: true,

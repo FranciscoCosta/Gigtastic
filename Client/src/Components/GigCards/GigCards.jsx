@@ -18,7 +18,7 @@ function GigCards({ item }) {
   const fetchData = async (item) => {
     setisLoading(true);
     const resultUser = await axios.get(
-      `http://localhost:8080/api/v1/user/${item.userId}`,
+      `http://localhost:8000/api/v1/user/${item.userId}`,
       {
         withCredentials: true,
       }
