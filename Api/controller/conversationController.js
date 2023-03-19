@@ -40,7 +40,6 @@ export const createConversation = async (req, res) => {
 };
 
 export const updateConversation = async (req, res) => {
-  console.log(req.params.id, "entrei no update");
   try {
     const updatedconversation = await updateConversationService(req, res);
     if (updatedconversation)

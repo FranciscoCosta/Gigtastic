@@ -1,14 +1,13 @@
 import Gig from "../models/gigModel.js";
 
 export const addGigService = async (req, res) => {
-  console.log(req.body);
   try {
     if (!req.isSeller)
       return res.status(401).json({ message: "Not authorized" });
     const result = new Gig({
-      userId: req.body.userId,
+      userId: req.userId,
       title: req.body.title,
-      category: req.body.cat,
+      category: req.body.cat || "Web",
       cover: req.body.cover,
       images: req.body.images,
       desc: req.body.desc,
@@ -21,7 +20,6 @@ export const addGigService = async (req, res) => {
     });
 
     const saveGig = await result.save();
-    console.log(saveGig, "GIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIGS");
     if (result) return result;
   } catch (error) {
     return error;
@@ -52,7 +50,6 @@ export const getGigService = async (req, res) => {
 
 export const getGigsService = async (req, res) => {
   const queries = req.query;
-  console.log(queries, "Queries do backend");
   const filters = {
     ...(queries.userId && { userId: queries.userId }),
     ...(queries.category && { category: { $regex: queries.category } }),
@@ -66,8 +63,6 @@ export const getGigsService = async (req, res) => {
   };
   try {
     const gigs = await Gig.find(filters).sort({ [queries.sort]: -1 });
-
-    console.log(filters, "Filters do backend");
     if (!gigs) return res.status(404).json({ message: "Gigs not found" });
     return gigs;
   } catch (error) {
@@ -77,9 +72,7 @@ export const getGigsService = async (req, res) => {
 
 export const getGigsuserService = async (req, res) => {
   try {
-    console.log("Aquii");
     const gigsUser = await Gig.find({ userId: req.userId });
-    console.log(gigsUser);
     return gigsUser;
   } catch (error) {
     console.log(error);

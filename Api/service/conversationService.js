@@ -1,12 +1,10 @@
 import Conversation from "../models/conversationModel.js";
 
 export const getConversationsService = async (req, res) => {
-  console.log(req.isSeller, req.userId);
   try {
     const conversations = await Conversation.find(
       req.isSeller ? { sellerId: req.userId } : { buyerId: req.userId }
     );
-    console.log(conversations);
     return conversations;
   } catch (error) {
     return res.status(500).json({ error });
@@ -16,7 +14,6 @@ export const getConversationsService = async (req, res) => {
 export const getConversationService = async (req, res) => {
   try {
     const conversation = await Conversation.findOne({ id: req.params.id });
-    console.log(conversation);
     return conversation;
   } catch (error) {
     return res.status(500).json({ error });
@@ -49,7 +46,6 @@ export const updateConversationService = async (req, res) => {
       },
       { new: true }
     );
-    console.log(updateConversation);
     return updateConversation;
   } catch (error) {
     return res.status(500).json({ error });

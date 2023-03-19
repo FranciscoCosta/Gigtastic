@@ -32,7 +32,6 @@ export const addReviewService = async (req, res) => {
 };
 
 export const getReviewsService = async (req, res) => {
-  console.log(req.params.gigId);
   try {
     const reviews = await Review.find({ gigId: req.params.gigId });
     return reviews;

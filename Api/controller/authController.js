@@ -18,10 +18,8 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const user = await loginService(req, res);
-    console.log(user);
     if (user) {
       const token = await createToken(user);
-      console.log(token, "Aqui");
       const { password, ...info } = user._doc;
       res
         .cookie("accessToken", token, {

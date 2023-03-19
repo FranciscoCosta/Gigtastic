@@ -9,7 +9,6 @@ export const getOrdersService = async (req, res) => {
       ...(req.isSeller ? { sellerId: req.userId } : { buyerId: req.userId }),
       isCompleted: true,
     });
-    console.log(orders);
     return res.status(200).json({ orders });
   } catch (error) {
     return res.status(500).send(error);
