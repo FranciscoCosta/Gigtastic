@@ -37,21 +37,16 @@ function Orders() {
     const sellerId = order.sellerId;
     const buyerId = order.buyerId;
     const id = sellerId + buyerId;
-    console.log(id);
+
     try {
-      const res = await axios.get(
-        `http://localhost:8080/api/v1/conversation/${id}`,
-        {
-          withCredentials: true,
-        }
-      );
-      console.log(res);
+      await axios.get(`http://localhost:8080/api/v1/conversation/${id}`, {
+        withCredentials: true,
+      });
       navigate(`/message/${id}`);
     } catch (err) {
       if (err.response.status === 404) {
-        console.log("entrei");
         const res = await axios.post(
-          `http://localhost:8080/api/v1/conversation/`,
+          `http://localhost:8080/api/v1/conversation`,
           {
             to: currentUser.isSeller ? buyerId : sellerId,
           },
@@ -59,7 +54,6 @@ function Orders() {
             withCredentials: true,
           }
         );
-        console.log(res);
         navigate(`/message/${res.data.id}`);
       }
     }

@@ -14,7 +14,6 @@ function Pay() {
   const [clientSecret, setClientSecret] = useState("");
 
   const { id } = useParams();
-  console.log(id);
   useEffect(() => {
     const makeRequest = async () => {
       try {

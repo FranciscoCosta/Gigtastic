@@ -65,7 +65,6 @@ const Message = () => {
                 className={m.userId === currentUser._id ? "owner item" : "item"}
                 key={m._id}
               >
-                {console.log(m.userId, "user", m.currentUser_id, "current")}
                 <img
                   src="https://www.w3schools.com/howto/img_avatar.png"
                   alt="profile-default"

@@ -36,7 +36,7 @@ function Gig() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const currentUser = JSON.parse(localStorage.getItem("user"));
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   const { id } = useParams();
   const fetchData = async (id) => {
@@ -54,6 +54,7 @@ function Gig() {
   }, []);
 
   const handlePayment = (id) => {
+    console.log(currentUser);
     if (!currentUser)
       setError("You need to be logged in a buyer account to buy a gig!");
     else {

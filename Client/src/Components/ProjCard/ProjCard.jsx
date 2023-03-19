@@ -45,7 +45,6 @@ export default function ProjCard() {
     });
     const resultUsers = await Promise.all(gigsWithUsers);
     setprojects(resultUsers);
-    console.log(resultUsers[0].user.img);
   };
 
   useEffect(() => {

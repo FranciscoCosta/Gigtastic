@@ -15,7 +15,6 @@ const Messages = () => {
   }, [read]);
 
   const fetchMessages = async () => {
-    console.log("fetch");
     const messages = await axios.get(
       "http://localhost:8080/api/v1/conversations",
       {

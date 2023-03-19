@@ -9,7 +9,6 @@ const Success = () => {
   const payment_intent = params.get("payment_intent");
 
   useEffect(() => {
-    console.log(payment_intent, "pagamento");
     const makeRequest = async () => {
       try {
         await axios.put(

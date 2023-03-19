@@ -32,14 +32,9 @@ function MyGigs() {
 
   const handleDelete = async (id) => {
     try {
-      const gigDelete = await axios.delete(
-        `http://localhost:8080/api/v1/gig/${id}`,
-        {
-          withCredentials: true,
-        }
-      );
-
-      console.log(gigDelete);
+      await axios.delete(`http://localhost:8080/api/v1/gig/${id}`, {
+        withCredentials: true,
+      });
     } catch (error) {
       console.log(error);
     }
@@ -52,7 +47,6 @@ function MyGigs() {
         "loading...."
       ) : (
         <div className="MyGigs__container">
-          {console.log(gigs)}
           <div className="MyGigs__title">
             <h1>Gigs</h1>
             <Link to="/add">
@@ -67,7 +61,7 @@ function MyGigs() {
               <th>Sales</th>
               <th>Action</th>
             </tr>
-            {gigs.map((gig) => (
+            {gigs?.map((gig) => (
               <tr key={gig.title}>
                 <td>
                   <img className="image" src={gig.cover} alt="gig-cover" />
