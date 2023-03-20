@@ -24,6 +24,7 @@ function Gigs() {
         withCredentials: true,
       }
     );
+    console.log(result);
     setGigs(result.data.result);
     setIsLoading(false);
   };
