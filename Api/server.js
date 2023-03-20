@@ -20,10 +20,7 @@ dotenv.config();
 
 app.use(
   cors({
-    origin: [
-      "https://gigtastic.onrender.com",
-      "https://gigtastic.netlify.app/",
-    ],
+    origin: ["https://gigtastic.onrender.com", "https://gigtastic.netlify.app"],
     credentials: true,
   })
 );
