@@ -44,11 +44,11 @@ function Gig() {
       `https://gigtastic.onrender.com/api/v1/gig/${id}`
     );
     const userF = await axios.get(
-      `http://localhost:8080/api/v1/user/${result.data.userId}`
+      `https://gigtastic.onrender.com/api/v1/user/${result.data.userId}`
     );
     setGig(result.data.gig);
     console.log(userF.data);
-    setUser(userF.data.user);
+    setUser(user.data.user);
 
     setIsLoading(false);
   };
