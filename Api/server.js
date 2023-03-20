@@ -38,6 +38,10 @@ app.use(orderRoute);
 app.use(conversationRoute);
 app.use(messageRoute);
 
+app.get("/", (req, res) => {
+  res.send("Hello Gigtastic");
+});
+
 // app.use((err, req, res, next) => {
 //   const errorStatus = err.status || 500;
 //   const errorMessage = err.message || "Something went wrong";
