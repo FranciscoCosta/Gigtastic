@@ -48,7 +48,7 @@ function Gig() {
     );
     setGig(result.data.gig);
     console.log(userF.data);
-    setUser(user.data.user);
+    setUser(userF.data.user);
 
     setIsLoading(false);
   };
