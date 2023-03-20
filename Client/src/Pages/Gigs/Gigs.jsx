@@ -19,7 +19,7 @@ function Gigs() {
     setIsLoading(true);
 
     const result = await axios.get(
-      `http://localhost:8000/api/v1/gigs?&min=${minRef.current.value}&max=${maxRef.current.value}&category=${category}&search=${search}&sort=${sort}&user=${userFilter[0]}`,
+      `https://gigtastic.onrender.com/api/v1/gigs?&min=${minRef.current.value}&max=${maxRef.current.value}&category=${category}&search=${search}&sort=${sort}&user=${userFilter[0]}`,
       {
         withCredentials: true,
       }

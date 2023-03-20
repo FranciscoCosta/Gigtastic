@@ -30,13 +30,16 @@ export default function ProjCard() {
   const [gigs, setGigs] = useState([]);
   const [projects, setprojects] = useState([]);
   const fetchData = async () => {
-    const result = await axios.get(`http://localhost:8000/api/v1/gigs`, {
-      withCredentials: true,
-    });
+    const result = await axios.get(
+      `https://gigtastic.onrender.com/api/v1/gigs`,
+      {
+        withCredentials: true,
+      }
+    );
     setGigs(result.data.result);
     const gigsWithUsers = result.data.result.map(async (item) => {
       const resultUser = await axios.get(
-        `http://localhost:8000/api/v1/user/${item.userId}`,
+        `https://gigtastic.onrender.com/api/v1/user/${item.userId}`,
         {
           withCredentials: true,
         }

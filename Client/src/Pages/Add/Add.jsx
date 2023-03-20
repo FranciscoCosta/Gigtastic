@@ -53,7 +53,7 @@ const Add = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8000/api/v1/gig", state, {
+      await axios.post("https://gigtastic.onrender.com/api/v1/gig", state, {
         withCredentials: true,
       });
     } catch (error) {

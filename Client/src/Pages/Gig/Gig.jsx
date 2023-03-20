@@ -40,10 +40,12 @@ function Gig() {
 
   const { id } = useParams();
   const fetchData = async (id) => {
-    const result = await axios.get(`http://localhost:8000/api/v1/gig/${id}`);
+    const result = await axios.get(
+      `https://gigtastic.onrender.com/api/v1/gig/${id}`
+    );
     setGig(result.data);
     const user = await axios.get(
-      `http://localhost:8000/api/v1/user/${result.data.userId}`
+      `https://gigtastic.onrender.com/api/v1/user/${result.data.userId}`
     );
     setUser(user.data.result);
 

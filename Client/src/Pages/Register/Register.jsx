@@ -34,7 +34,7 @@ function Register() {
     e.preventDefault();
     const url = await upload(file);
     try {
-      await axios.post("http://localhost:8000/api/v1/register", {
+      await axios.post("https://gigtastic.onrender.com/api/v1/register", {
         ...user,
         img: url,
       });
