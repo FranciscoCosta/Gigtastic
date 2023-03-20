@@ -6,6 +6,7 @@ import messageIcon from "../../assets/message.png";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Audio } from "react-loader-spinner";
 
 function Orders() {
   const navigate = useNavigate();
@@ -68,7 +69,15 @@ function Orders() {
   return (
     <div className="Orders">
       {isLoading ? (
-        "Loading ..."
+        <Audio
+          height="80"
+          width="80"
+          radius="9"
+          color="#1db954"
+          ariaLabel="loading"
+          wrapperStyle
+          wrapperClass
+        />
       ) : (
         <div className="Orders__container">
           <div className="Orders__title">

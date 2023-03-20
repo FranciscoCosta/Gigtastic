@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "./MyGigs.scss";
 import deleteIcon from "../../assets/delete.png";
 import axios from "axios";
+import { Audio } from "react-loader-spinner";
 
 function MyGigs() {
   const [isLoading, setIsLoading] = useState(false);
@@ -44,7 +45,15 @@ function MyGigs() {
   return (
     <div className="MyGigs">
       {isLoading ? (
-        "loading...."
+        <Audio
+          height="80"
+          width="80"
+          radius="9"
+          color="#1db954"
+          ariaLabel="loading"
+          wrapperStyle
+          wrapperClass
+        />
       ) : (
         <div className="MyGigs__container">
           <div className="MyGigs__title">

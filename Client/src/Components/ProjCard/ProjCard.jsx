@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { Audio } from "react-loader-spinner";
 
 const responsive = {
   superLargeDesktop: {
@@ -58,7 +59,15 @@ export default function ProjCard() {
   return (
     <div className="ProjCard">
       {isLoading ? (
-        "Loading"
+        <Audio
+          height="80"
+          width="80"
+          radius="9"
+          color="#1db954"
+          ariaLabel="loading"
+          wrapperStyle
+          wrapperClass
+        />
       ) : (
         <div className="ProjCard__container">
           <Carousel responsive={responsive} className="ProjCard__carousel">
