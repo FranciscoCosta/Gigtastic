@@ -10,6 +10,7 @@ import Orders from "./Orders/Orders";
 import MyGigs from "./MyGigs/MyGigs";
 import Pay from "./Pay/Pay";
 import Success from "./Success/Success";
+import PageNotFound from "./PageNotFound/PageNotFound";
 
 export {
   Home,
@@ -24,4 +25,5 @@ export {
   MyGigs,
   Pay,
   Success,
+  PageNotFound,
 };

@@ -13,6 +13,7 @@ import {
   Messages,
   Register,
   Success,
+  PageNotFound,
 } from "./Pages/index";
 import { Navbar, Footer } from "./Components/index";
 import "./App.scss";
@@ -88,6 +89,10 @@ function App() {
         {
           path: "/success",
           element: <Success />,
+        },
+        {
+          path: "*",
+          element: <PageNotFound />,
         },
       ],
     },
