@@ -21,7 +21,7 @@ function Pay() {
     const makeRequest = async () => {
       try {
         const response = await axios.post(
-          `https://gigtastic.onrender.com/create-payment-intent/${id}`,
+          `https://gigtastic.onrender.comender.com/payment-intent/${id}`,
           {},
           {
             withCredentials: true,

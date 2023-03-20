@@ -19,7 +19,7 @@ function MyGigs() {
     setIsLoading(true);
     try {
       const gigsFromuser = await axios.get(
-        `https://gigtastic.onrender.com/api/v1/gigsuser`,
+        `https://gigtastic.onrender.comigsuser`,
         {
           withCredentials: true,
         }
@@ -33,7 +33,7 @@ function MyGigs() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://gigtastic.onrender.com/api/v1/gig/${id}`, {
+      await axios.delete(`https://gigtastic.onrender.comig/${id}`, {
         withCredentials: true,
       });
     } catch (error) {

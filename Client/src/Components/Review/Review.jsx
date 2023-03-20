@@ -13,7 +13,7 @@ function Review({ review }) {
 
   const fetchUser = async () => {
     const result = await axios.get(
-      `https://gigtastic.onrender.com/api/v1/user/${review.userId}`
+      `https://gigtastic.onrender.com/api/v1/${review.userId}`
     );
     setUser(result.data.result);
     setIsLoading(false);

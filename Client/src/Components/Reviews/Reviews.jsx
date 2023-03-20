@@ -39,7 +39,7 @@ function Reviews({ id }) {
     e.preventDefault();
     try {
       await axios.post(
-        `https://gigtastic.onrender.com/api/v1/review/`,
+        `https://gigtastic.onrender.com/api/v1/review`,
         {
           ...newreview,
           userId: currentUser._id,

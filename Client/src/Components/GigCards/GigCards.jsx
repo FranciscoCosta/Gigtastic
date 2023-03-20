@@ -18,7 +18,7 @@ function GigCards({ item }) {
   const fetchData = async (item) => {
     setisLoading(true);
     const resultUser = await axios.get(
-      `https://gigtastic.onrender.com/api/v1/user/${item.userId}`,
+      `https://gigtastic.onrender.com/api/v1/${item.userId}`,
       {
         withCredentials: true,
       }

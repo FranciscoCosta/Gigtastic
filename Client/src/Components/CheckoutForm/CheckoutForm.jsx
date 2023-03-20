@@ -58,7 +58,7 @@ function CheckoutForm() {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: "https://gigtastic.netlify.app//success",
+        return_url: "https://gigtastic.onrender.com/success",
       },
     });
 
