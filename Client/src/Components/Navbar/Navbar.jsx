@@ -28,7 +28,7 @@ function Navbar() {
 
   const handleLogout = async () => {
     try {
-      await axios.post("https://gigtastic.onrender.com/api/v1/logout");
+      await axios.post("https://gigtastic.onrender.comender.com/api/v1/logout");
       await localStorage.removeItem("currentUser");
       navigate("/login");
     } catch (err) {
