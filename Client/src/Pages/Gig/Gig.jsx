@@ -89,10 +89,10 @@ function Gig() {
               <img className="pp" src={user.img} alt="userPhoto" />
               <span>{user.username}</span>
               <div className="Gig__stars">
-                {gig.totalStars > 0 &&
+                {/* {gig.totalStars > 0 &&
                   (Array(Math.round(gig.totalStars / gig.stars)) || [])
                     .fill()
-                    .map((item, i) => <img src={star} alt="" key={i} />)}
+                    .map((item, i) => <img src={star} alt="" key={i} />)} */}
                 <span>
                   {!isNaN(gig.totalStars / gig.stars) &&
                     Math.round(gig.totalStars / gig.stars)}
