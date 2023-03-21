@@ -90,7 +90,7 @@ function Gig() {
               <span>{user.username}</span>
               <div className="Gig__stars">
                 {gig.totalStars > 0 &&
-                  Array(Math.round(gig.totalStars / gig.stars))
+                  (Array(Math.round(gig.totalStars / gig.stars)) || [])
                     .fill()
                     .map((item, i) => <img src={star} alt="" key={i} />)}
                 <span>
