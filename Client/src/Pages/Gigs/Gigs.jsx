@@ -44,57 +44,59 @@ function Gigs() {
 
   return (
     <div className="Gigs">
-      <div className="Gigs__container">
-        <span className="Gigs__title-info">Gigtastic: {category || ""}</span>
+      {isLoading ? (
+        <Audio
+          height="80"
+          width="80"
+          radius="9"
+          color="#1db954"
+          ariaLabel="loading"
+          wrapperStyle
+          wrapperClass
+        />
+      ) : (
+        <div className="Gigs__container">
+          <span className="Gigs__title-info">Gigtastic: {category || ""}</span>
 
-        <h1>{category || "All Categories"}</h1>
-        {userFilter.length > 0 && (
-          <h2>
-            Seller: <span>{userFilter[1]}</span>
-          </h2>
-        )}
-        <p>Results:</p>
-        <div className="Gigs__menu">
-          <div className="Gigs__menu-left">
-            <span>Budget</span>
-            <input type="text" name="" id="" placeholder="min" ref={minRef} />
-            <input type="text" name="" id="" placeholder="max" ref={maxRef} />
-            <button onClick={handleApply}>Apply</button>
-          </div>
-          <div className="Gigs__menu-right">
-            <span className="Menu__sortBy">SortBy</span>
-            <span className="Menu__sortType">
-              {sort === "sales" ? "Best Selling" : "Newest"}
-            </span>
-            <img
-              src={down}
-              alt="down-arrow-icon"
-              onClick={() => setOpen(!open)}
-            />
-            {open && (
-              <div className="Sort__menu">
-                <span onClick={() => reSort("createdAt")}>Newest</span>
-                <span onClick={() => reSort("sales")}>Best Selling</span>
-              </div>
-            )}
-          </div>
-        </div>
-        <div className="Gigs__cards">
-          {isLoading ? (
-            <Audio
-              height="80"
-              width="80"
-              radius="9"
-              color="#1db954"
-              ariaLabel="loading"
-              wrapperStyle
-              wrapperClass
-            />
-          ) : (
-            gigs.map((gig) => <GigCards key={gig._id} item={gig} />)
+          <h1>{category || "All Categories"}</h1>
+          {userFilter.length > 0 && (
+            <h2>
+              Seller: <span>{userFilter[1]}</span>
+            </h2>
           )}
+          <p>Results:</p>
+          <div className="Gigs__menu">
+            <div className="Gigs__menu-left">
+              <span>Budget</span>
+              <input type="text" name="" id="" placeholder="min" ref={minRef} />
+              <input type="text" name="" id="" placeholder="max" ref={maxRef} />
+              <button onClick={handleApply}>Apply</button>
+            </div>
+            <div className="Gigs__menu-right">
+              <span className="Menu__sortBy">SortBy</span>
+              <span className="Menu__sortType">
+                {sort === "sales" ? "Best Selling" : "Newest"}
+              </span>
+              <img
+                src={down}
+                alt="down-arrow-icon"
+                onClick={() => setOpen(!open)}
+              />
+              {open && (
+                <div className="Sort__menu">
+                  <span onClick={() => reSort("createdAt")}>Newest</span>
+                  <span onClick={() => reSort("sales")}>Best Selling</span>
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="Gigs__cards">
+            {gigs.map((gig) => (
+              <GigCards key={gig._id} item={gig} />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
