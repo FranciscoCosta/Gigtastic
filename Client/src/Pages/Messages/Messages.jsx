@@ -16,7 +16,7 @@ const Messages = () => {
 
   const fetchMessages = async () => {
     const messages = await axios.get(
-      "https://gigtastic.onrender.com/conversations",
+      "https://gigtastic.onrender.com/api/v1/conversations",
       {
         withCredentials: true,
       }
@@ -26,7 +26,7 @@ const Messages = () => {
   };
   const handleRead = async (id) => {
     await axios.put(
-      `https://gigtastic.onrender.comonversation/${id}`,
+      `https://gigtastic.onrender.com/api/v1/conversation/${id}`,
       {
         readBySeller: true,
         readByBuyer: true,
