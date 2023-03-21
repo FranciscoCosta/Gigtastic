@@ -30,7 +30,7 @@ const responsive = {
 };
 
 function Gig() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [gig, setGig] = useState([]);
   const [user, setUser] = useState([]);
   const [error, setError] = useState("");
@@ -40,6 +40,7 @@ function Gig() {
 
   const { id } = useParams();
   const fetchData = async (id) => {
+    setIsLoading(true);
     const result = await axios.get(
       `https://gigtastic.onrender.com/api/v1/gig/${id}`
     );
@@ -47,9 +48,8 @@ function Gig() {
       `https://gigtastic.onrender.com/api/v1/user/${result.data.userId}`
     );
     setGig(result.data.gig);
-    console.log(userF.data);
+    console.log(userF, "DATA USER F");
     setUser(userF.data.user);
-
     setIsLoading(false);
   };
   useEffect(() => {
