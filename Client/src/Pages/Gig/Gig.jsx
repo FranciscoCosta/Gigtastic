@@ -47,9 +47,9 @@ function Gig() {
     const userF = await axios.get(
       `https://gigtastic.onrender.com/api/v1/user/${result.data.userId}`
     );
-    setGig(result.data.gig);
+    setGig(result.data);
     console.log(userF, "DATA USER F");
-    setUser(userF.data.user);
+    setUser(userF.data);
     setIsLoading(false);
   };
   useEffect(() => {
