@@ -1,6 +1,6 @@
   <h1>Gigtastic</h1>
   <p>O Gigtastic é um projeto pessoal que desenvolvi para colocar em prática os conhecimentos de backend e frontend que aprendi na Trybe. Ele é um site onde pessoas podem se registrar como compradoras ou vendedoras de serviços digitais.</p>
-
+  <img src="https://i.ibb.co/y8QyD4z/cover.png" alt="cover"/>
   <h2>Funcionalidades</h2>
   <ul>
     <li>Registro e autenticação de usuários;</li>
@@ -23,7 +23,8 @@
     <li>Instale as dependências do frontend utilizando o comando <code>npm install</code>;</li>
     <li>Rode o comando <code>npm start</code> na pasta do backend para iniciar o servidor;</li>
     <li>Rode o comando <code>npm start</code> na pasta do frontend para iniciar o site;</li>
-    <li>Substitua o https://gigtastic.onrender.com/ por localhoost:5173
+    <li>Substitua o https://gigtastic.onrender.com/ por localhoost:5173</li>
+    <li>Adicione as variaveís de ambiente no ficheiro dot.env</li>
   </ol>
 
   <h2>Próximos passos</h2>
