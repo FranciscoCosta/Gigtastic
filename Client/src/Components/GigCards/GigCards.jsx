@@ -10,21 +10,22 @@ function GigCards({ item }) {
   const navigate = useNavigate();
   const { setCategory, setSearch, setuserFilter } = useContext(Context);
   const [user, setuser] = useState({});
-  const [isLoading, setisLoading] = useState(false);
+  const [isLoadingCard, setisLoadingCard] = useState(true);
 
   useEffect(() => {
     fetchData(item);
   }, []);
   const fetchData = async (item) => {
-    setisLoading(true);
+    console.log(item);
     const resultUser = await axios.get(
-      `https://gigtastic.onrender.com/api/v1/${item.userId}`,
+      `https://gigtastic.onrender.com/api/v1/user/${item.userId}`,
       {
         withCredentials: true,
       }
     );
+    console.log(resultUser, "ASDASDASDDSSD");
     setuser(resultUser.data.result);
-    setisLoading(false);
+    setisLoadingCard(false);
   };
 
   const resetFilter = () => {
@@ -44,7 +45,7 @@ function GigCards({ item }) {
         <img src={item.cover} alt="" />
       </Link>
       <div className="GigCards__info">
-        {isLoading ? (
+        {isLoadingCard ? (
           "Loading..."
         ) : (
           <div className="GigCards__user">

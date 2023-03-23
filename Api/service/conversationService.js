@@ -48,6 +48,7 @@ export const updateConversationService = async (req, res) => {
     );
     return updateConversation;
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ error });
   }
 };

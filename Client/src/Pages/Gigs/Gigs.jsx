@@ -11,13 +11,13 @@ function Gigs() {
   const [sort, setSort] = useState("sales");
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingC, setIsLoadingC] = useState(true);
   const [gigs, setGigs] = useState([]);
   const minRef = useRef();
   const maxRef = useRef();
 
   const fetchData = async () => {
     setIsLoading(true);
-
     const result = await axios.get(
       `https://gigtastic.onrender.com/api/v1/gigs?&min=${minRef.current.value}&max=${maxRef.current.value}&category=${category}&search=${search}&sort=${sort}&user=${userFilter[0]}`,
       {
@@ -31,7 +31,7 @@ function Gigs() {
 
   useEffect(() => {
     fetchData();
-  }, [sort, category]);
+  }, [sort, category, isLoadingC]);
 
   const reSort = (type) => {
     setSort(type);
@@ -92,7 +92,7 @@ function Gigs() {
           </div>
           <div className="Gigs__cards">
             {gigs.map((gig) => (
-              <GigCards key={gig._id} item={gig} />
+              <GigCards key={gig._id} item={gig} update={setIsLoadingC} />
             ))}
           </div>
         </div>
