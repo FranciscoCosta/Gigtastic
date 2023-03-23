@@ -20,7 +20,7 @@ dotenv.config();
 
 app.use(
   cors({
-    origin: ["https://gigtastic.netlify.app", "https://gigtastic.onrender.com"],
+    origin: ["https://gigtastic.onrender.com", "https://gigtastic.netlify.app"],
     credentials: true,
   })
 );
@@ -49,7 +49,7 @@ app.get("/", (req, res) => {
 const startServer = async () => {
   try {
     await connectDB(process.env.MONGODB_URL);
-    app.listen(8000, () => {
+    app.listen(8080, () => {
       console.log("Server is running on port 8000");
     });
   } catch (error) {

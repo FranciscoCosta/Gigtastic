@@ -13,22 +13,23 @@ const stripePromise = loadStripe(
 
 function Pay() {
   const [clientSecret, setClientSecret] = useState("");
-  const [isLoading, setisLoading] = useState(false);
 
   const { id } = useParams();
   useEffect(() => {
-    setisLoading(true);
+    console.log(id);
+    console.log("SDAASDASDASDAS");
     const makeRequest = async () => {
       try {
+        console.log("entrei no try");
         const response = await axios.post(
-          `https://gigtastic.onrender.comender.com/payment-intent/${id}`,
+          `https://gigtastic.onrender.com/create-payment-intent/${id}`,
           {},
           {
             withCredentials: true,
           }
         );
+        console.log("response");
         setClientSecret(response.data.clientSecret);
-        setisLoading(false);
       } catch (error) {
         return error;
       }
@@ -46,22 +47,10 @@ function Pay() {
 
   return (
     <div className="Pay">
-      {isLoading ? (
-        <Audio
-          height="80"
-          width="80"
-          radius="9"
-          color="#1db954"
-          ariaLabel="loading"
-          wrapperStyle
-          wrapperClass
-        />
-      ) : (
-        clientSecret && (
-          <Elements options={options} stripe={stripePromise}>
-            <CheckoutForm />
-          </Elements>
-        )
+      {clientSecret && (
+        <Elements options={options} stripe={stripePromise}>
+          <CheckoutForm />
+        </Elements>
       )}
     </div>
   );

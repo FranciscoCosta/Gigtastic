@@ -7,7 +7,7 @@ import {
 } from "@stripe/react-stripe-js";
 import "./CheckoutForm.scss";
 
-function CheckoutForm() {
+const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -50,6 +50,8 @@ function CheckoutForm() {
     e.preventDefault();
 
     if (!stripe || !elements) {
+      // Stripe.js has not yet loaded.
+      // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
 
@@ -58,10 +60,16 @@ function CheckoutForm() {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: "https://gigtastic.onrender.com/success",
+        // Make sure to change this to your payment completion page
+        return_url: "https://gigtastic.netlify.app/success",
       },
     });
 
+    // This point will only be reached if there is an immediate error when
+    // confirming the payment. Otherwise, your customer will be redirected to
+    // your `return_url`. For some payment methods like iDEAL, your customer will
+    // be redirected to an intermediate site first to authorize the payment, then
+    // redirected to the `return_url`.
     if (error.type === "card_error" || error.type === "validation_error") {
       setMessage(error.message);
     } else {
@@ -91,6 +99,6 @@ function CheckoutForm() {
       {message && <div id="payment-message">{message}</div>}
     </form>
   );
-}
+};
 
 export default CheckoutForm;

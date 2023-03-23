@@ -30,7 +30,7 @@ const responsive = {
 };
 
 function Gig() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [gig, setGig] = useState([]);
   const [user, setUser] = useState([]);
   const [error, setError] = useState("");
@@ -40,16 +40,15 @@ function Gig() {
 
   const { id } = useParams();
   const fetchData = async (id) => {
-    setIsLoading(true);
     const result = await axios.get(
       `https://gigtastic.onrender.com/api/v1/gig/${id}`
     );
     const userF = await axios.get(
       `https://gigtastic.onrender.com/api/v1/user/${result.data.userId}`
     );
+    console.log(result, "DATA USER F");
     setGig(result.data);
-    console.log(userF, "DATA USER F");
-    setUser(userF.data);
+    setUser(userF.data.result);
     setIsLoading(false);
   };
   useEffect(() => {
@@ -89,10 +88,10 @@ function Gig() {
               <img className="pp" src={user.img} alt="userPhoto" />
               <span>{user.username}</span>
               <div className="Gig__stars">
-                {/* {gig.totalStars > 0 &&
-                  (Array(Math.round(gig.totalStars / gig.stars)) || [])
+                {gig.totalStars > 0 &&
+                  Array(Math.round(gig.totalStars / gig.stars))
                     .fill()
-                    .map((item, i) => <img src={star} alt="" key={i} />)} */}
+                    .map((item, i) => <img src={star} alt="" key={i} />)}
                 <span>
                   {!isNaN(gig.totalStars / gig.stars) &&
                     Math.round(gig.totalStars / gig.stars)}
